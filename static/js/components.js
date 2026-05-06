@@ -22,6 +22,58 @@
     });
   }
 
+  function wireMobileNav() {
+    var toggle = document.querySelector('.nav-toggle');
+    var links = document.getElementById('primary-nav-links');
+    var backdrop = document.querySelector('.nav-backdrop');
+    if (!toggle || !links || !backdrop) return;
+
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      links.classList.toggle('is-open', open);
+      backdrop.classList.toggle('is-open', open);
+      document.body.classList.toggle('nav-locked', open);
+      if (open) {
+        backdrop.removeAttribute('hidden');
+      } else {
+        // Hide backdrop after fade-out so it doesn't intercept clicks.
+        setTimeout(function () {
+          if (!backdrop.classList.contains('is-open')) {
+            backdrop.setAttribute('hidden', '');
+          }
+        }, 250);
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      setOpen(!open);
+    });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+      }
+    });
+    // Close drawer when a link inside it is tapped, so the drawer
+    // doesn't briefly remain visible on top of the next page during
+    // a same-tab navigation.
+    links.addEventListener('click', function (e) {
+      var t = e.target;
+      while (t && t !== links) {
+        if (t.tagName === 'A') { setOpen(false); break; }
+        t = t.parentNode;
+      }
+    });
+    // If the viewport grows back to desktop while the drawer is open,
+    // close it so the desktop nav layout isn't stuck in mobile state.
+    var mq = window.matchMedia('(min-width: 881px)');
+    var mqHandler = function (e) { if (e.matches) setOpen(false); };
+    if (mq.addEventListener) mq.addEventListener('change', mqHandler);
+    else if (mq.addListener) mq.addListener(mqHandler);
+  }
+
   // Apps Script endpoint owns rolling-membership + contact form rows.
   // Update this when the form integration is migrated to the new officer.
   var APPS_SCRIPT_URL = window.SFS_FORM_ENDPOINT || '';
@@ -72,6 +124,7 @@
       load('footer-placeholder', 'footer.html')
     ]).then(function () {
       activeLink();
+      wireMobileNav();
       wireContactForm();
     });
   });

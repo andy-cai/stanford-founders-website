@@ -18,7 +18,10 @@
       <img src="assets/logo/SFC_White.svg" alt="Stanford Founders' Club">
       <span class="name">Stanford Founders' Club</span>
     </a>
-    <div class="links">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="links" id="primary-nav-links">
       <a href="about.html" data-page="about">About</a>
       <a href="events.html" data-page="events">Events</a>
       <a href="services.html" data-page="services">Services</a>
@@ -28,3 +31,4 @@
     </div>
   </div>
 </nav>
+<div class="nav-backdrop" hidden></div>

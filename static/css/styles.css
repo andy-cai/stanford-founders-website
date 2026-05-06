@@ -137,6 +137,64 @@ nav.primary .links .cta {
 }
 nav.primary .links .cta:hover { background: var(--parchment); color: var(--cardinal); }
 
+/* ── Hamburger toggle (mobile only — display:flex set in @media below) ── */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 12px 10px;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  /* Sit above the drawer so the icon (animated to ✕) stays clickable. */
+  position: relative;
+  z-index: 102;
+}
+.nav-toggle:hover { background: rgba(255, 255, 255, 0.08); }
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--white);
+  border-radius: 1px;
+  transform-origin: center;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ── Drawer backdrop (covers the page content while the menu is open) ── */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 12, 0.45);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.nav-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Lock body scroll while the drawer is open. */
+body.nav-locked { overflow: hidden; }
+
 /* ── Buttons ── */
 .btn {
   display: inline-flex;
@@ -1181,7 +1239,53 @@ footer.site .legal {
   .final-cta h2 { font-size: 34px; }
   section.body { padding: 64px 0; }
   footer.site .grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  nav.primary .links a:not(.cta) { display: none; }
+
+  /* Mobile nav: hamburger replaces the inline links, .links becomes
+     a slide-in drawer anchored to the right. */
+  .nav-toggle { display: flex; }
+  nav.primary .brand .name { display: none; }
+  nav.primary .wrap { padding-top: 10px; padding-bottom: 10px; }
+  nav.primary .links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 82vw;
+    background: var(--cardinal);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 76px 20px 32px;
+    transform: translateX(100%);
+    transition: transform 0.25s ease-out;
+    z-index: 101;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    /* Avoid the drawer being clipped by sticky-nav's own stacking. */
+    -webkit-overflow-scrolling: touch;
+  }
+  nav.primary .links.is-open { transform: translateX(0); }
+  nav.primary .links a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--white);
+    border-radius: 8px;
+  }
+  nav.primary .links a:hover,
+  nav.primary .links a.active {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  nav.primary .links .cta {
+    margin-left: 0;
+    margin-top: 16px;
+    text-align: center;
+    background: var(--white);
+    color: var(--cardinal);
+  }
+
   .utility .wrap { flex-direction: column; align-items: flex-start; gap: 8px; }
   .utility .demo-day { flex-wrap: wrap; }
   .prose-grid { grid-template-columns: 1fr; gap: 16px; }

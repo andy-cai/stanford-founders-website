@@ -1186,9 +1186,32 @@ footer.site .grid {
 }
 footer.site .brand-block {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
 }
 footer.site .brand-block img { height: 112px; width: auto; margin-bottom: 0; }
+footer.site .social-icons {
+  display: inline-flex;
+  gap: 10px;
+}
+footer.site .social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.78);
+  transition: color 0.15s, background 0.15s, transform 0.15s;
+}
+footer.site .social-icons a:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+footer.site .social-icons svg { display: block; }
 footer.site .brand-block p {
   font-size: 14px;
   color: rgba(255,255,255,0.6);
@@ -1404,6 +1427,10 @@ footer.site .legal {
     border-bottom-color: #2A2638;
   }
   .team-card .info .name { color: #FFFAEB; }
+  /* Officer role: warm white in dark mode (Cardinal Red on warm dark
+     canvas reads as muddy/over-saturated). The .team-grid.compact
+     override below keeps alumni roles in muted gray. */
+  .team-card .info .role { color: #FFFAEB; }
 
   /* Compact team grid (alumni) — transparent default, surface on hover */
   .team-grid.compact .team-card {
@@ -1447,10 +1474,11 @@ footer.site .legal {
   }
   .placeholder-block p { color: #A8A29E; }
 
-  /* Logo grid in dark mode — keep cells white-bg so logos remain
-     readable; logos are designed for light surfaces. */
+  /* Logo grid in dark mode — keep cells pure white so partner logos
+     (many of which are designed for white surfaces) render correctly
+     without ghosting against a tinted background. */
   .logo-cell {
-    background: #F5F2EC;
+    background: var(--white);
     border-color: #2A2638;
   }
   .logo-cell:hover {

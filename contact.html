@@ -6,6 +6,7 @@
 <title>Contact | Stanford Founders</title>
 <meta name="description" content="Reach out to Stanford Founders. Membership applications, sponsor inquiries, speaker requests, press.">
 <link rel="stylesheet" href="static/css/styles.css">
+<link rel="icon" href="assets/logo/SFC_Cardinal.svg" type="image/svg+xml">
 <script>
   // Apps Script web app endpoint owned by Advit Deepak (per Instructions.pdf,
   // section "Contact Form Integration"). Submissions append rows to the
@@ -14,67 +15,169 @@
   window.SFS_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwXJcHdKMc2tqan-EB0M_MIHWRmNrghI8qbAWoS2syckAGLValMl0Y8r60lF1bQ0efP/exec';
 </script>
 <script src="static/js/components.js" defer></script>
+<style>
+  /* ── Contact page ── */
+  :root { --link: var(--cardinal); }
+
+  /* Opener */
+  .contact-opener { padding: 96px 0 64px; border-bottom: 1px solid var(--line); }
+  .contact-opener .lede-serif { margin-top: 24px; max-width: 46ch; }
+
+  /* Inquiry ledger: hairline rows, no index numbers */
+  .contact-main { padding: 72px 0 80px; }
+  .contact-main .grid { gap: 64px; align-items: start; }
+  .inq { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-strong); }
+  .inq > li { border-bottom: 1px solid var(--line); padding: 26px 0; }
+  .inq > li:last-child { border-bottom: 1px solid var(--line-strong); }
+  .inq .kicker {
+    display: block;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .inq h3 {
+    font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.2;
+    letter-spacing: -0.012em; color: var(--text); margin-bottom: 8px;
+  }
+  .inq p { font-size: 16px; line-height: 1.6; color: var(--text-2); max-width: 46ch; margin: 0; }
+  .inq p + p { margin-top: 6px; }
+  .inq a {
+    color: var(--link); font-weight: 500;
+    text-decoration: underline; text-decoration-color: rgba(140,21,21,0.35); text-underline-offset: 3px;
+  }
+  .inq a:hover { text-decoration-color: currentColor; }
+  .inq .row-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 12px; }
+  .inq .row-links a { font-size: 14px; font-weight: 700; text-decoration: none; letter-spacing: 0.01em; }
+  .inq .row-links a .arrow { display: inline-block; margin-left: 5px; transition: transform 0.2s var(--ease-out); }
+  .inq .row-links a:hover .arrow { transform: translateX(3px); }
+  .inq .email { font-family: var(--mono); font-size: 14px; letter-spacing: 0; }
+
+  /* Form heading (form itself is styled by the stylesheet) */
+  .contact-form .form-title {
+    font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.15;
+    letter-spacing: -0.014em; color: var(--text); margin-bottom: 6px;
+  }
+  .contact-form .form-note { font-size: 14px; color: var(--muted); margin: 0 0 26px; line-height: 1.5; }
+
+  /* Figure and closing line */
+  .contact-figure { padding: 0 0 96px; }
+  .contact-figure .closing {
+    margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line-strong);
+    font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); line-height: 1.4;
+    color: var(--text); letter-spacing: -0.008em; max-width: 40ch; text-wrap: balance;
+  }
+  .contact-figure .closing a {
+    color: var(--link); text-decoration: underline; text-decoration-color: rgba(140,21,21,0.35);
+    text-underline-offset: 4px; text-decoration-thickness: 1.5px;
+  }
+  .contact-figure .closing a:hover { text-decoration-color: currentColor; }
+
+  @media (max-width: 880px) {
+    .contact-opener { padding: 64px 0 48px; }
+    .contact-main { padding: 48px 0 56px; }
+    .contact-main .grid { gap: 40px; }
+    .inq h3 { font-size: 23px; }
+    .contact-figure { padding-bottom: 64px; }
+    .contact-figure .closing { margin-top: 32px; padding-top: 24px; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root { --link: #E8A5A5; }
+    .inq a, .contact-figure .closing a { text-decoration-color: rgba(232,165,165,0.35); }
+    .inq h3, .contact-form .form-title, .contact-figure .closing { color: #FFFAEB; }
+  }
+</style>
 </head>
 <body data-page="contact">
-
+<a class="skip-link" href="#main">Skip to content</a>
 <div id="header-placeholder"></div>
 
-<header class="page-hero light">
-  <div class="wrap">
-    <div class="eyebrow">Contact</div>
-    <h1>Apply, sponsor, or get in touch</h1>
-    <p>Membership applications go through the form below. Sponsors, speakers, and press should email us directly.</p>
-  </div>
-</header>
+<main id="main">
 
-<section class="body">
-  <div class="wrap-narrow">
-    <div class="contact-grid">
-
-      <div class="contact-info">
-        <h3>Membership</h3>
-        <p>Open to current Stanford graduate students working on a company,
-          or seriously considering one. Apply via the form on this page or the
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqes6iVUMySVnBRsVfj0NS3DglEp27nJAKCu6xW58gtR0faw/viewform" target="_blank" rel="noopener">Google form</a>.
-          Rolling review.</p>
-
-        <h3>Sponsorship</h3>
-        <p>Sector mixers and Demo Day are sponsor-supported. Email
-          <a href="mailto:stanfordfounders@stanford.edu">stanfordfounders@stanford.edu</a>
-          for the current deck and pricing.</p>
-
-        <h3>Press</h3>
-        <p>For Demo Day press credentials and media inquiries, email
-          <a href="mailto:stanfordfounders@stanford.edu">stanfordfounders@stanford.edu</a>
-          with "Press" in the subject.</p>
-      </div>
-
-      <form id="contact-form" class="contact-form" autocomplete="on">
-        <div class="field-row">
-          <div class="field">
-            <label for="firstName">First name</label>
-            <input id="firstName" name="firstName" type="text" required autocomplete="given-name">
-          </div>
-          <div class="field">
-            <label for="lastName">Last name</label>
-            <input id="lastName" name="lastName" type="text" required autocomplete="family-name">
-          </div>
-        </div>
-        <div class="field">
-          <label for="email">Stanford email</label>
-          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@stanford.edu">
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required placeholder="Tell us about what you're working on, or which inquiry you're sending (membership, sponsor, speaker, press)."></textarea>
-        </div>
-        <button type="submit" class="btn primary full">Send</button>
-        <div class="form-status" aria-live="polite"></div>
-      </form>
-
+  <!-- Opener -->
+  <header class="contact-opener">
+    <div class="wrap">
+      <div class="eyebrow-line">Contact</div>
+      <h1 class="display">Apply, sponsor, or get in touch.</h1>
+      <p class="lede-serif">Membership applications go through the form below. Sponsors, speakers, and press should email us directly.</p>
     </div>
-  </div>
-</section>
+  </header>
+
+  <!-- Inquiry types + form -->
+  <section class="contact-main">
+    <div class="wrap">
+      <div class="grid grid-5-7">
+
+        <ul class="inq" aria-label="Ways to reach us">
+          <li>
+            <span class="kicker">Students</span>
+            <h3>Membership</h3>
+            <p>Open to current Stanford graduate students working on a company, or seriously considering one. Apply via the form on this page or the <a href="https://forms.gle/DWG3xHtUywoQrMCA6" target="_blank" rel="noopener">membership form</a>. Rolling review.</p>
+          </li>
+          <li>
+            <span class="kicker">Partners</span>
+            <h3>Sponsorship</h3>
+            <p>Sector mixers and Demo Day are sponsor-supported. Email <a class="email" href="mailto:stanfordfounders@stanford.edu">stanfordfounders@stanford.edu</a> for the current deck and pricing.</p>
+          </li>
+          <li>
+            <span class="kicker">Media</span>
+            <h3>Press</h3>
+            <p>For Demo Day press credentials and media inquiries, email <a class="email" href="mailto:stanfordfounders@stanford.edu">stanfordfounders@stanford.edu</a> with &ldquo;Press&rdquo; in the subject.</p>
+          </li>
+          <li>
+            <span class="kicker">Follow along</span>
+            <h3>Events and socials</h3>
+            <p>Every mixer, dinner, and Demo Day is listed on our Luma calendar. Photos and announcements go out on Instagram and LinkedIn.</p>
+            <div class="row-links">
+              <a href="https://luma.com/stanford-founders-events" target="_blank" rel="noopener">Events on Luma<span class="arrow" aria-hidden="true">&rarr;</span></a>
+              <a href="https://www.instagram.com/stanford_founders/" target="_blank" rel="noopener">Instagram<span class="arrow" aria-hidden="true">&rarr;</span></a>
+              <a href="https://www.linkedin.com/company/stanford-founders/" target="_blank" rel="noopener">LinkedIn<span class="arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
+        </ul>
+
+        <form id="contact-form" class="contact-form" autocomplete="on">
+          <h2 class="form-title">Send a message</h2>
+          <p class="form-note">We read everything. Membership, sponsor, speaker, and press notes all land in the same inbox.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="firstName">First name</label>
+              <input id="firstName" name="firstName" type="text" required autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label for="lastName">Last name</label>
+              <input id="lastName" name="lastName" type="text" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Stanford email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@stanford.edu">
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us about what you're working on, or which inquiry you're sending (membership, sponsor, speaker, press)."></textarea>
+          </div>
+          <button type="submit" class="btn primary full">Send</button>
+          <div class="form-status" aria-live="polite"></div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Figure + closing line -->
+  <section class="contact-figure">
+    <div class="wrap">
+      <figure class="fig reveal">
+        <div class="photo-frame photo-frame--16x9">
+          <img src="images/events/demo-chat.jpg" alt="Attendees in name tags talking animatedly around a table between sessions at Demo Day" width="1800" height="1200" loading="lazy">
+        </div>
+        <figcaption><span class="fig-no">Fig. 01</span>Between sessions at Demo Day</figcaption>
+      </figure>
+      <p class="closing">Prefer to just join? <a href="https://forms.gle/DWG3xHtUywoQrMCA6" target="_blank" rel="noopener">Fill out the membership form</a>.</p>
+    </div>
+  </section>
+
+</main>
 
 <div id="footer-placeholder"></div>
 

@@ -4,104 +4,400 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Services | Stanford Founders</title>
-<meta name="description" content="Programming, co-founder matching, sector mixers, Demo Day, and investor access for Stanford's graduate founders.">
+<meta name="description" content="Founder programming, co-founder matching, sector mixers, and investor access with Demo Day each spring, for Stanford's graduate founders.">
 <link rel="stylesheet" href="static/css/styles.css">
+<link rel="icon" href="assets/logo/SFC_Cardinal.svg" type="image/svg+xml">
 <script src="static/js/components.js" defer></script>
+<style>
+  /* ── Opener: contents page ── */
+  .svc-opener { padding-top: 88px; }
+  .svc-opener .display { max-width: 20ch; margin-bottom: 24px; }
+  .svc-opener .lede-serif { margin-bottom: 64px; }
+  .contents-note { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); line-height: 1.7; }
+  .contents-note b { display: block; color: var(--cardinal); font-weight: 600; margin-bottom: 6px; }
+  .contents-note span { display: block; max-width: 28ch; }
+
+  /* ── Scrollytelling body ── */
+  .svc-body { padding-top: 32px; }
+  .svc { padding: 64px 0; border-top: 1px solid var(--line); }
+  .svc:first-of-type { border-top: 0; padding-top: 0; }
+  .svc .spec > div:last-child { border-bottom: 0; }
+  .svc-no { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--cardinal); margin-bottom: 14px; }
+  .svc h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(28px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.014em; color: var(--text); margin-bottom: 16px; max-width: 22ch; text-wrap: balance; }
+  .svc-intro { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 60ch; margin-bottom: 28px; letter-spacing: -0.006em; }
+  .svc .spec dd .tracks { display: block; margin-top: 4px; color: var(--text); }
+  .svc-photo { margin-bottom: 24px; }
+
+  .svc-stage { isolation: isolate; }
+  .svc-stage img { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
+  .svc-stage img.is-active { opacity: 1; }
+  .svc-fig figcaption { display: flex; align-items: baseline; gap: 0; min-height: 1.45em; }
+  .svc-fig .fig-text { transition: opacity 0.3s ease; }
+  .svc-fig .fig-text.is-fading { opacity: 0; }
+  .svc-ticks { display: flex; gap: 6px; margin-top: 12px; }
+  .svc-ticks span { height: 2px; flex: 1; background: var(--line-strong); transition: background 0.3s ease; }
+  .svc-ticks span.is-active { background: var(--cardinal); }
+
+  @media (min-width: 900px) {
+    .svc-photo { display: none; }
+    .svc-body .grid-7-5 { gap: 64px; }
+  }
+  @media (max-width: 899px) {
+    .svc-stage-col { display: none; }
+    .svc { padding: 48px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .svc-stage img, .svc-fig .fig-text, .svc-ticks span { transition: none; }
+  }
+
+  /* ── Sector tracks ── */
+  .track-strip .display-md { margin-bottom: 0; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .track-strip p { font-size: 17px; line-height: 1.6; color: var(--text-2); max-width: 52ch; }
+
+  /* ── Year strip ── */
+  .year-section .display-md { margin-bottom: 40px; }
+  .year-foot { margin-top: 20px; font-size: 14px; color: var(--muted); }
+  .year-foot a { color: var(--cardinal); text-decoration: underline; text-decoration-color: rgba(140,21,21,0.35); text-underline-offset: 3px; }
+  .year-foot a:hover { text-decoration-color: currentColor; }
+
+  /* ── Closing CTA ── */
+  .svc-cta { padding: 128px 0 112px; }
+  .svc-cta .display-md { margin-bottom: 18px; }
+  .svc-cta p { font-size: 18px; line-height: 1.55; max-width: 44ch; }
+  .svc-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+  @media (max-width: 880px) {
+    .svc-opener { padding-top: 64px; }
+    .svc-opener .lede-serif { margin-bottom: 40px; }
+    .svc-cta { padding: 96px 0 80px; }
+  }
+</style>
 </head>
 <body data-page="services">
-
+<a class="skip-link" href="#main">Skip to content</a>
 <div id="header-placeholder"></div>
 
-<header class="page-hero">
-  <div class="bg" style="background-image: url('images/events/demo-chat.jpg');"></div>
-  <div class="scrim"></div>
-  <div class="wrap">
-    <div class="eyebrow">Services</div>
-    <h1>Programming, matching, mixers, and investor access</h1>
-  </div>
-</header>
+<main id="main">
 
-<section class="body">
-  <div class="wrap-narrow">
-    <div class="services-list">
+  <!-- 1. Contents-page opener -->
+  <section class="section svc-opener">
+    <div class="wrap">
+      <div class="eyebrow-line">Services</div>
+      <h1 class="display">Programming, matching, mixers, and investor access.</h1>
+      <p class="lede-serif">Four things Stanford Founders does for members, from the first workshop to the Demo Day stage.</p>
 
-      <div class="service-row">
-        <div class="copy">
-          <div class="num">01</div>
-          <h3>Founder programming</h3>
-          <p>Stanford Founders runs a regular speaker series and workshops for members. Sessions cover fundraising, recruiting, go-to-market, and other operational topics, led by founders and partners.</p>
-          <ul>
-            <li>Speaker series and firesides with operators</li>
-            <li>Fundraising, recruiting, and go-to-market workshops</li>
-            <li>Office hours with partners and angels</li>
-          </ul>
+      <div class="grid grid-4-8">
+        <div class="contents-note">
+          <b>Contents · Four services</b>
+          <span>Jump to a section, or read straight through. Every service is open to members.</span>
         </div>
-        <div class="photo"><img src="images/events/demo-day-panel.jpg" alt="Founder Q&A panel with audience"></div>
+        <ol class="ledger">
+          <li>
+            <a href="#programming">
+              <span class="no">01</span>
+              <div>
+                <h3>Founder programming</h3>
+                <p>Speaker series, firesides, workshops, and office hours with partners and angels.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#matching">
+              <span class="no">02</span>
+              <div>
+                <h3>Co-founder matching</h3>
+                <p>Curated dinners and profile-based introductions across the graduate schools.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#mixers">
+              <span class="no">03</span>
+              <div>
+                <h3>Sector mixers</h3>
+                <p>Gatherings by track, from bio and climate to defense, AI infrastructure, and fintech.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#investors">
+              <span class="no">04</span>
+              <div>
+                <h3>Investor access &amp; Demo Day</h3>
+                <p>Partner introductions, pre-pitch reviews, and Demo Day each spring.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ol>
       </div>
-
-      <div class="service-row reverse">
-        <div class="copy">
-          <div class="num">02</div>
-          <h3>Co-founder matching</h3>
-          <p>We host curated dinners and introductions across the graduate schools to help members find co-founders. Members are paired by background, sector, and stage.</p>
-          <ul>
-            <li>Curated co-founder dinners</li>
-            <li>Profile-based introductions across schools</li>
-            <li>Office hours for matched pairs</li>
-          </ul>
-        </div>
-        <div class="photo"><img src="images/events/magic-room-portrait.jpg" alt="Co-founder dinner, Magic Room series"></div>
-      </div>
-
-      <div class="service-row">
-        <div class="copy">
-          <div class="num">03</div>
-          <h3>Sector mixers</h3>
-          <p>Sector-focused gatherings for members working in similar areas. Recent tracks include bio and therapeutics, climate and energy, defense, AI infrastructure, and fintech.</p>
-          <ul>
-            <li>Bio &amp; therapeutics</li>
-            <li>Climate &amp; energy</li>
-            <li>Defense &amp; deeptech</li>
-            <li>AI infrastructure</li>
-            <li>Fintech &amp; payments</li>
-          </ul>
-        </div>
-        <div class="photo"><img src="images/events/ai-social-event.jpeg" alt="AI sector mixer"></div>
-      </div>
-
-      <div class="service-row reverse">
-        <div class="copy">
-          <div class="num">04</div>
-          <h3>Investor access &amp; Demo Day</h3>
-          <p>Stanford Founders supports member fundraising through partner introductions and the annual Demo Day. Demo Day 2026 takes place on May 7 at the Tresidder Oak Lounge.</p>
-          <ul>
-            <li>Demo Day each Spring, open to all members</li>
-            <li>Partner introductions at active venture firms</li>
-            <li>Pre-pitch reviews with alumni founders</li>
-          </ul>
-        </div>
-        <div class="photo"><img src="images/events/demo-day-presenter.jpg" alt="Founder presenting at Stanford Founders Demo Day"></div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="final-cta">
-  <div class="bg" style="background-image: url('images/events/demo-panel-stage.jpg'); background-position: center 18%;"></div>
-  <div class="scrim"></div>
-  <div class="wrap-narrow">
-    <div class="eyebrow">Get involved</div>
-    <h2>Apply, sponsor, or speak</h2>
-    <p>Members apply on a rolling basis. Sponsors and speakers should reach out directly.</p>
-    <div class="actions">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqes6iVUMySVnBRsVfj0NS3DglEp27nJAKCu6xW58gtR0faw/viewform" target="_blank" rel="noopener" class="btn on-cardinal">Apply now</a>
-      <a href="contact.html" class="btn on-cardinal-secondary">Sponsor or speak</a>
+  <!-- 2. Scrollytelling body -->
+  <section class="section svc-body">
+    <div class="wrap">
+      <div class="grid grid-7-5">
+
+        <div class="svc-col">
+
+          <section class="svc" id="programming" data-fig="01" data-caption="Founder Q&amp;A panel at Demo Day">
+            <div class="photo-frame photo-frame--3x2 svc-photo">
+              <img src="images/events/demo-day-panel.jpg" alt="Audience at long tables watching a founder panel" width="1800" height="1200" loading="lazy">
+            </div>
+            <span class="svc-no">01 / 04</span>
+            <h2>Founder programming</h2>
+            <p class="svc-intro">Stanford Founders runs a regular speaker series and workshops for members. Sessions cover fundraising, recruiting, go-to-market, and other operational topics, led by founders and partners.</p>
+            <dl class="spec">
+              <div>
+                <dt>What it is</dt>
+                <dd>A standing programme of talks and hands-on sessions, led by the founders and partners who have done the work themselves.</dd>
+              </div>
+              <div>
+                <dt>Who it's for</dt>
+                <dd>Members at any stage who want operational depth on fundraising, recruiting, and go-to-market.</dd>
+              </div>
+              <div>
+                <dt>What to expect</dt>
+                <dd><strong>Speaker series and firesides with operators.</strong> Fundraising, recruiting, and go-to-market workshops. Office hours with partners and angels.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="svc" id="matching" data-fig="02" data-caption="Co-founder dinner, Magic Room series">
+            <div class="photo-frame photo-frame--3x2 svc-photo">
+              <img src="images/events/magic-room-portrait.jpg" alt="Members in conversation at a co-founder dinner, Magic Room series" width="1800" height="1200" loading="lazy">
+            </div>
+            <span class="svc-no">02 / 04</span>
+            <h2>Co-founder matching</h2>
+            <p class="svc-intro">We host curated dinners and introductions across the graduate schools to help members find co-founders. Members are paired by background, sector, and stage.</p>
+            <dl class="spec">
+              <div>
+                <dt>What it is</dt>
+                <dd>A matching programme that puts members from different graduate schools at the same table, on purpose.</dd>
+              </div>
+              <div>
+                <dt>Who it's for</dt>
+                <dd>Members looking for a co-founder. Pairings are made by background, sector, and stage.</dd>
+              </div>
+              <div>
+                <dt>What to expect</dt>
+                <dd><strong>Curated co-founder dinners.</strong> Profile-based introductions across schools. Office hours for matched pairs.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="svc" id="mixers" data-fig="03" data-caption="AI sector mixer">
+            <div class="photo-frame photo-frame--3x2 svc-photo">
+              <img src="images/events/ai-social-event.jpeg" alt="Members at an outdoor AI sector mixer in a sunny courtyard" width="1600" height="1200" loading="lazy">
+            </div>
+            <span class="svc-no">03 / 04</span>
+            <h2>Sector mixers</h2>
+            <p class="svc-intro">Sector-focused gatherings for members working in similar areas, so the people in the room share your problems, not just your campus.</p>
+            <dl class="spec">
+              <div>
+                <dt>What it is</dt>
+                <dd>Smaller gatherings organised by track rather than by school or class year.</dd>
+              </div>
+              <div>
+                <dt>Who it's for</dt>
+                <dd>Members building in a specific field who want to meet the others working in it.</dd>
+              </div>
+              <div>
+                <dt>What to expect</dt>
+                <dd>Recent tracks: <span class="tracks">Bio &amp; therapeutics · Climate &amp; energy · Defense &amp; deeptech · AI infrastructure · Fintech &amp; payments</span></dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="svc" id="investors" data-fig="04" data-caption="Founder presenting at Demo Day">
+            <div class="photo-frame photo-frame--3x2 svc-photo">
+              <img src="images/events/demo-day-presenter.jpg" alt="Founder presenting at Stanford Founders Demo Day" width="1800" height="1200" loading="lazy">
+            </div>
+            <span class="svc-no">04 / 04</span>
+            <h2>Investor access &amp; Demo Day</h2>
+            <p class="svc-intro">Stanford Founders supports member fundraising through partner introductions and the annual Demo Day, held each spring. The next Demo Day is in May 2027.</p>
+            <dl class="spec">
+              <div>
+                <dt>What it is</dt>
+                <dd>Warm introductions when you are ready to raise, and a stage in front of investors once a year.</dd>
+              </div>
+              <div>
+                <dt>Who it's for</dt>
+                <dd>Members who are raising or preparing to. Demo Day is open to all members.</dd>
+              </div>
+              <div>
+                <dt>What to expect</dt>
+                <dd><strong>Partner introductions at active venture firms.</strong> Pre-pitch reviews with alumni founders. Demo Day each spring.</dd>
+              </div>
+            </dl>
+          </section>
+
+        </div>
+
+        <div class="svc-stage-col">
+          <div class="sticky-col">
+            <figure class="fig svc-fig">
+              <div class="photo-frame photo-frame--3x4 svc-stage" id="svc-stage">
+                <img src="images/events/demo-day-panel.jpg" alt="Audience at long tables watching a founder panel" width="1800" height="1200" loading="lazy" data-for="programming" class="is-active">
+                <img src="images/events/magic-room-portrait.jpg" alt="Members in conversation at a co-founder dinner, Magic Room series" width="1800" height="1200" loading="lazy" data-for="matching">
+                <img src="images/events/ai-social-event.jpeg" alt="Members at an outdoor AI sector mixer in a sunny courtyard" width="1600" height="1200" loading="lazy" data-for="mixers">
+                <img src="images/events/demo-day-presenter.jpg" alt="Founder presenting at Stanford Founders Demo Day" width="1800" height="1200" loading="lazy" data-for="investors">
+              </div>
+              <figcaption aria-live="polite">
+                <span class="fig-no" id="svc-fig-no">Fig. 01</span>
+                <span class="fig-text" id="svc-fig-text">Founder Q&amp;A panel at Demo Day</span>
+              </figcaption>
+              <div class="svc-ticks" aria-hidden="true">
+                <span class="is-active" data-for="programming"></span>
+                <span data-for="matching"></span>
+                <span data-for="mixers"></span>
+                <span data-for="investors"></span>
+              </div>
+            </figure>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- 3. Sector tracks strip -->
+  <section class="section section--tinted track-strip">
+    <div class="wrap">
+      <div class="grid grid-4-8">
+        <div>
+          <div class="eyebrow-line">Sector tracks</div>
+          <h2 class="display-md">Five tracks, five rooms.</h2>
+        </div>
+        <div>
+          <div class="pill-row">
+            <span class="pill-tag"><span class="dot"></span>Bio &amp; therapeutics</span>
+            <span class="pill-tag"><span class="dot"></span>Climate &amp; energy</span>
+            <span class="pill-tag"><span class="dot"></span>Defense &amp; deeptech</span>
+            <span class="pill-tag"><span class="dot"></span>AI infrastructure</span>
+            <span class="pill-tag"><span class="dot"></span>Fintech &amp; payments</span>
+          </div>
+          <p>Mixers are organised by track, so members working on similar problems end up in the same room. Recent tracks include bio and therapeutics, climate and energy, defense, AI infrastructure, and fintech.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. A year with Stanford Founders -->
+  <section class="section year-section">
+    <div class="wrap">
+      <div class="eyebrow-line">The calendar</div>
+      <h2 class="display-md">A year with Stanford Founders.</h2>
+      <ul class="year-strip">
+        <li>
+          <span class="q">Sep – Dec</span>
+          <h3>Autumn</h3>
+          <ul>
+            <li>Welcome socials for new members</li>
+            <li>First sector mixers of the year</li>
+          </ul>
+        </li>
+        <li>
+          <span class="q">Jan – Mar</span>
+          <h3>Winter</h3>
+          <ul>
+            <li>Co-founder dinners and pitch night</li>
+            <li>Firesides and workshops</li>
+          </ul>
+        </li>
+        <li class="is-hi">
+          <span class="q">Apr – Jun</span>
+          <h3>Spring</h3>
+          <ul>
+            <li>Sector mixers</li>
+            <li>Demo Day</li>
+          </ul>
+          <div class="hi-note">
+            <span class="lbl">Next Demo Day</span>
+            <span class="val">May 2027</span>
+          </div>
+        </li>
+        <li>
+          <span class="q">Jun – Sep</span>
+          <h3>Summer</h3>
+          <ul>
+            <li>The community keeps building</li>
+            <li>Events posted on Luma</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="year-foot">Exact dates are posted on our <a href="https://luma.com/stanford-founders-events" target="_blank" rel="noopener">Luma calendar</a>.</p>
+    </div>
+  </section>
+
+  <!-- 5. Closing CTA -->
+  <section class="band-photo svc-cta">
+    <img src="images/events/demo-pitch.jpg" alt="Speaker with a microphone on the Demo Day stage" width="2048" height="1365" loading="lazy">
+    <div class="wrap">
+      <div class="eyebrow-line">Get involved</div>
+      <h2 class="display-md">Apply, sponsor, or speak.</h2>
+      <p>Members apply on a rolling basis. Sponsors and speakers should reach out directly.</p>
+      <div class="actions">
+        <a href="https://forms.gle/DWG3xHtUywoQrMCA6" target="_blank" rel="noopener" class="btn on-photo">Apply now</a>
+        <a href="contact.html" class="btn on-photo-secondary">Sponsor or speak</a>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <div id="footer-placeholder"></div>
 
+<script>
+(function () {
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.svc[id]'));
+  var stage = document.getElementById('svc-stage');
+  if (!sections.length || !stage) return;
+
+  var images = Array.prototype.slice.call(stage.querySelectorAll('img[data-for]'));
+  var ticks = Array.prototype.slice.call(document.querySelectorAll('.svc-ticks span[data-for]'));
+  var figNo = document.getElementById('svc-fig-no');
+  var figText = document.getElementById('svc-fig-text');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current = sections[0].id;
+
+  function activate(id) {
+    if (id === current) return;
+    current = id;
+    var sec = document.getElementById(id);
+    images.forEach(function (img) { img.classList.toggle('is-active', img.getAttribute('data-for') === id); });
+    ticks.forEach(function (t) { t.classList.toggle('is-active', t.getAttribute('data-for') === id); });
+    var no = 'Fig. ' + sec.getAttribute('data-fig');
+    var text = sec.getAttribute('data-caption');
+    if (reduceMotion || !figText) {
+      if (figNo) figNo.textContent = no;
+      if (figText) figText.textContent = text;
+      return;
+    }
+    figText.classList.add('is-fading');
+    window.setTimeout(function () {
+      if (figNo) figNo.textContent = no;
+      figText.textContent = text;
+      figText.classList.remove('is-fading');
+    }, 200);
+  }
+
+  if (!('IntersectionObserver' in window)) return;
+
+  // A section becomes active when it crosses the middle band of the viewport.
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) activate(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+  sections.forEach(function (sec) { observer.observe(sec); });
+})();
+</script>
 </body>
 </html>

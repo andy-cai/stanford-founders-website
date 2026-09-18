@@ -4,207 +4,360 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stanford Founders | The graduate founder network at Stanford</title>
-<meta name="description" content="Stanford Founders is the graduate founder community at Stanford. 1,150+ members across seven schools. Spring 2025 Demo Day: 90 startups, 300+ investors, 1,500+ attendees.">
+<meta name="description" content="Stanford Founders is the graduate founder community at Stanford: 1,150+ members across seven schools, weekly events, and a spring Demo Day with 90 startups, 300+ investors, and 1,500+ attendees.">
 <link rel="stylesheet" href="static/css/styles.css">
+<link rel="icon" href="assets/logo/SFC_Cardinal.svg" type="image/svg+xml">
 <script src="static/js/components.js" defer></script>
+<style>
+/* ── Home page ── */
+
+/* Hero: full-bleed photograph, content bottom-left */
+.home-hero > .wrap { width: 100%; position: relative; }
+.home-hero::after {
+  background:
+    linear-gradient(to right, rgba(20,14,14,0.55) 0%, rgba(20,14,14,0.30) 38%, rgba(20,14,14,0) 62%),
+    linear-gradient(to bottom,
+      rgba(20,14,14,0.62) 0%,
+      rgba(20,14,14,0.20) 38%,
+      rgba(20,14,14,0.48) 68%,
+      rgba(20,14,14,0.84) 100%);
+}
+.home-hero .display { max-width: 12ch; margin-bottom: 24px; }
+.home-hero .lede-serif { margin-bottom: 36px; }
+.home-hero .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.home-hero .hero-meta { margin-top: 32px; }
+.home-hero .pill-tag { transition: border-color 0.15s, background 0.15s; }
+.home-hero .pill-tag:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
+
+/* Stats */
+.home-stats .stat-row { gap: 40px 32px; }
+
+/* Story: sticky margin column + prose */
+.story .grid { gap: 48px; }
+@media (min-width: 900px) { .story .grid { gap: 72px; } }
+.story .spec { margin-top: 32px; }
+.story .spec > div { grid-template-columns: 96px 1fr; gap: 16px; padding: 14px 0; }
+.story .spec dd { font-size: 15px; line-height: 1.5; }
+.story .prose h3 {
+  font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: -0.01em;
+  color: var(--text); margin: 40px 0 14px; padding-top: 28px; border-top: 1px solid var(--line-strong);
+}
+.story .prose h3 .mono { color: var(--cardinal); margin-right: 10px; }
+
+/* What we do */
+.pillars { border-top: 1px solid var(--line); }
+.pillars .head { display: grid; gap: 24px; margin-bottom: 48px; }
+@media (min-width: 900px) { .pillars .head { grid-template-columns: 4fr 8fr; gap: 72px; align-items: end; } }
+.pillars .head .lede-serif { margin-bottom: 4px; }
+.pillars .after { margin-top: 32px; }
+
+/* Photo mosaic */
+.mosaic { display: grid; gap: 24px; grid-template-columns: 1fr; }
+.mosaic .note { align-self: end; }
+.mosaic .note p { font-family: var(--serif); font-size: 19px; line-height: 1.4; color: var(--text-2); max-width: 22ch; letter-spacing: -0.006em; }
+.mosaic .note .mono { display: block; color: var(--cardinal); margin-bottom: 12px; }
+@media (max-width: 899px) { .mosaic .m2 .photo-frame { aspect-ratio: 4 / 3; } }
+@media (min-width: 900px) {
+  .mosaic { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .mosaic .m1 { grid-column: 1 / 3; }
+  .mosaic .m2 { grid-column: 3 / 4; display: flex; flex-direction: column; }
+  .mosaic .m2 .photo-frame { flex: 1; aspect-ratio: auto; min-height: 0; }
+  .mosaic .note { grid-column: 1 / 2; padding-bottom: 28px; }
+  .mosaic .m3 { grid-column: 2 / 4; }
+}
+
+/* Founder voices: hairline cards on white */
+.voices .head { max-width: 640px; margin-bottom: 48px; }
+.voices .head p { font-size: 18px; color: var(--muted); line-height: 1.55; margin-top: 12px; }
+.voices .voice-photo { background: var(--surface); border: 1px solid var(--line); box-shadow: none; border-radius: 12px; }
+.voices .voice-photo .quote { color: var(--text); }
+.voices .voice-photo .attr { border-top-color: var(--line); }
+.voices .voice-photo .who .name { color: var(--text); }
+.voices .voice-photo .who .role { color: var(--muted); }
+
+/* Where we fit: three ruled columns on ink */
+.fit .display-md { max-width: 16ch; margin-bottom: 48px; }
+.tri { display: grid; grid-template-columns: 1fr; border-top: 1px solid rgba(255,255,255,0.18); }
+.tri > div { padding: 28px 0 0; border-top: 1px solid rgba(255,255,255,0.12); }
+.tri > div:first-child { border-top: 0; }
+.tri .numeral { font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; color: var(--sandstone); margin-bottom: 18px; display: block; }
+.tri h3 { font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.2; margin-bottom: 14px; letter-spacing: -0.012em; }
+.tri p { font-size: 16px; line-height: 1.65; max-width: 36ch; }
+@media (min-width: 900px) {
+  .tri { grid-template-columns: repeat(3, 1fr); }
+  .tri > div { padding: 36px 32px 8px; border-top: 0; border-left: 1px solid rgba(255,255,255,0.14); }
+  .tri > div:first-child { border-left: 0; padding-left: 0; }
+  .tri > div:last-child { padding-right: 0; }
+}
+
+/* Closing CTA on photo */
+@media (min-width: 900px) { .close { padding: 136px 0; } }
+.close .display-md { max-width: 16ch; margin-bottom: 32px; }
+.close .actions { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+.close .next { color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; }
+.close .next:hover { border-color: rgba(255,255,255,0.85); }
+</style>
 </head>
 <body data-page="home">
-
+<a class="skip-link" href="#main">Skip to content</a>
 <div id="header-placeholder"></div>
 
-<header class="hero-photo">
-  <div class="bg" style="background-image: url('images/events/networking-portrait.jpg');"></div>
-  <div class="scrim"></div>
-  <div class="wrap">
-    <div class="eyebrow">The graduate founder network at Stanford</div>
-    <h1>Where Stanford grads <span class="accent">build</span></h1>
-    <p class="lede">
-      1,150+ graduate founders across Stanford's seven schools. The shortest path
-      from lab, classroom, or studio to a funded company.
-    </p>
-    <div class="actions">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqes6iVUMySVnBRsVfj0NS3DglEp27nJAKCu6xW58gtR0faw/viewform" target="_blank" rel="noopener" class="btn on-photo">Join the community</a>
-      <a href="https://luma.com/achgqxtn" target="_blank" rel="noopener" class="btn on-photo-secondary">RSVP for Demo Day</a>
-    </div>
-  </div>
-  <div class="photo-credit">Magic Room dinner series, Spring 2026</div>
-</header>
+<main id="main">
 
-<section class="stats">
-  <div class="wrap-narrow">
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="num">1,150+</div>
-        <div class="label">Graduate founders<span class="source">Across seven Stanford schools</span></div>
+  <!-- Hero -->
+  <section class="band-photo band-photo--tall band-photo--top home-hero" aria-labelledby="hero-title">
+    <img src="images/events/networking-portrait.jpg" alt="Two founders in conversation at a warmly lit dinner" width="1800" height="1200" fetchpriority="high">
+    <div class="wrap">
+      <div class="eyebrow-line">The graduate founder network at Stanford</div>
+      <h1 class="display" id="hero-title">Where Stanford grads build.</h1>
+      <p class="lede-serif">1,150+ graduate founders across Stanford's seven schools. The shortest path from lab, classroom, or studio to a funded company.</p>
+      <div class="actions">
+        <a href="https://forms.gle/DWG3xHtUywoQrMCA6" target="_blank" rel="noopener" class="btn on-photo">Join the community</a>
+        <a href="https://luma.com/stanford-founders-events" target="_blank" rel="noopener" class="btn on-photo-secondary">Upcoming events</a>
       </div>
-      <div class="stat">
-        <div class="num">90</div>
-        <div class="label">Startups pitched at Demo Day<span class="source">Spring 2025 · Stanford Daily</span></div>
-      </div>
-      <div class="stat">
-        <div class="num">300+</div>
-        <div class="label">Investors in the room<span class="source">Spring 2025 Demo Day</span></div>
-      </div>
-      <div class="stat">
-        <div class="num">1,500+</div>
-        <div class="label">Demo Day attendees<span class="source">Spring 2025 · Stanford Daily</span></div>
+      <div class="hero-meta">
+        <a href="events.html#demo-day" class="pill-tag"><span class="dot" aria-hidden="true"></span>Next Demo Day · May 2027</a>
       </div>
     </div>
-  </div>
-</section>
+    <div class="photo-credit">Magic Room dinner series, Spring 2026</div>
+  </section>
 
-<section class="body tinted">
-  <div class="wrap-narrow">
-    <div class="prose-grid">
-      <div class="label">History</div>
-      <div>
-        <p>Stanford Founders began as a casual WhatsApp group of ten friends sharing entrepreneurial events, resources, and opportunities across different graduate schools at Stanford.</p>
-        <p>We noticed the difficulty Stanford graduate students faced in finding cofounders and accessing entrepreneurial resources from other schools. The group aimed to bridge that gap.</p>
-        <p>The chat grew from 10 to over 1,200 members, highlighting the need for the network. We turned the group into an official student organization, offering programs and events for cross-disciplinary Stanford graduate students at the early stage of their startup development.</p>
-      </div>
-    </div>
-
-    <div class="prose-grid">
-      <div class="label">Mission</div>
-      <div>
-        <p>Stanford Founders' Club is a dynamic community of cross-disciplinary Stanford graduate students.</p>
-        <p>We support members at the early stages of company-building through programming, dinners, sector mixers, and introductions across the seven Stanford graduate schools.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="body" id="what-we-do">
-  <div class="wrap-narrow">
-    <div class="section-header">
-      <div class="eyebrow">What we do</div>
-      <h2>Built for graduate founders</h2>
-      <p>Programming, co-founder matching, sector mixers, and investor access for the early stages of company-building.</p>
-    </div>
-    <div class="pillars-photo">
-
-      <a class="pillar-photo" href="services.html">
-        <div class="bg" style="background-image: url('images/events/team-community.jpeg');"></div>
-        <div class="scrim"></div>
-        <div class="num">01</div>
-        <h3>Founder programming</h3>
-        <p>Firesides with operators who have shipped, from PhD spinouts to GSB-led companies. Workshops on fundraising, recruiting, and first-customer GTM.</p>
-      </a>
-
-      <a class="pillar-photo" href="services.html">
-        <div class="bg" style="background-image: url('images/events/magic-room-portrait.jpg');"></div>
-        <div class="scrim"></div>
-        <div class="num">02</div>
-        <h3>Co-founder matching</h3>
-        <p>Engineers, scientists, and operators meet across the seven schools. Most matches
-          start at a single dinner and end at a Y Combinator interview.</p>
-      </a>
-
-      <a class="pillar-photo" href="services.html">
-        <div class="bg" style="background-image: url('images/events/ai-social-event.jpeg');"></div>
-        <div class="scrim"></div>
-        <div class="num">03</div>
-        <h3>Sector mixers</h3>
-        <p>Bio, climate, defense, AI infrastructure, fintech. Small-format dinners with
-          founders working on the same wedge of the market.</p>
-      </a>
-
-      <a class="pillar-photo" href="services.html">
-        <div class="bg" style="background-image: url('images/events/demo-day-panel.jpg');"></div>
-        <div class="scrim"></div>
-        <div class="num">04</div>
-        <h3>Investor access</h3>
-        <p>Demo Day puts 90 startups in front of 300+ investors in a single afternoon.
-          Direct introductions to partners at Unusual, Pear, NEA, a16z, DCM, and BlackRock.</p>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<section class="body tinted">
-  <div class="wrap-narrow">
-    <div class="section-header">
-      <div class="eyebrow">Founder voices</div>
-      <h2>Members on the network</h2>
-      <p>Four graduate founders on what the community has been for them.</p>
-    </div>
-    <div class="voices-photo">
-
-      <article class="voice-photo">
-        <p class="quote">Stanford Founders provided exactly the interdisciplinary
-          environment I needed to find my technical co-founder.</p>
-        <div class="attr">
-          <img class="portrait" src="images/headshots/lukas.jpg" alt="Lukas Klaiber">
-          <div class="who">
-            <div class="name">Lukas Klaiber</div>
-            <div class="role">Former Student Advisor</div>
-          </div>
+  <!-- Stats -->
+  <section class="section section--tight section--tinted home-stats" aria-label="By the numbers">
+    <div class="wrap">
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">1,150+</div>
+          <div class="label">Graduate founders<span class="source">Across seven Stanford schools</span></div>
         </div>
-      </article>
-
-      <article class="voice-photo">
-        <p class="quote">The level of support and resources available within this
-          community is unmatched on campus.</p>
-        <div class="attr">
-          <img class="portrait" src="images/headshots/xinmeng.jpeg" alt="Xinmeng Zeng">
-          <div class="who">
-            <div class="name">Xinmeng Zeng</div>
-            <div class="role">Former VP of Finance</div>
-          </div>
+        <div class="stat">
+          <div class="num">90</div>
+          <div class="label">Startups pitched at Demo Day<span class="source">Spring 2025 · Stanford Daily</span></div>
         </div>
-      </article>
-
-      <article class="voice-photo">
-        <p class="quote">Being part of this organization wasn't just about networking. It was about community.</p>
-        <div class="attr">
-          <img class="portrait" src="images/headshots/johnny.jpeg" alt="Johnny Chang">
-          <div class="who">
-            <div class="name">Johnny Chang</div>
-            <div class="role">Former President</div>
-          </div>
+        <div class="stat">
+          <div class="num">300+</div>
+          <div class="label">Investors in the room<span class="source">Spring 2025 Demo Day</span></div>
         </div>
-      </article>
-
-      <article class="voice-photo">
-        <p class="quote">There is no better place on campus for graduate students to
-          go from idea to funded company.</p>
-        <div class="attr">
-          <img class="portrait" src="images/headshots/pricilla.jpeg" alt="Priscilla Russo">
-          <div class="who">
-            <div class="name">Priscilla Russo</div>
-            <div class="role">Former Co-VP of Community Initiatives</div>
-          </div>
+        <div class="stat">
+          <div class="num">1,500+</div>
+          <div class="label">Demo Day attendees<span class="source">Spring 2025 · Stanford Daily</span></div>
         </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section class="body tinted">
-  <div class="wrap-narrow">
-    <div class="section-header">
-      <h2>Where Stanford Founders fits</h2>
-    </div>
-    <div class="principles">
-      <div class="principle">
-        <h3>Where We Fit</h3>
-        <p>Stanford has plenty of entrepreneurship infrastructure, including StartX, GSB E-Club, BASES, ASES, STVP, and more. Stanford Founders tries to help early, when graduate students are transitioning from research to startup and seeking a new community.</p>
-      </div>
-      <div class="principle">
-        <h3>Values</h3>
-        <p>We value diversity, collaboration, and integrity in all our endeavors, fostering a supportive and dynamic ecosystem that propels entrepreneurial success.</p>
-      </div>
-      <div class="principle">
-        <h3>Community</h3>
-        <p>Our community of over 1,200 graduate student founders thrive by collaborating. Stanford Founders connects them with resources, investors, and like-minded co-founders across every school.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Story: history + mission -->
+  <section class="section story" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="grid grid-4-8">
+        <div class="sticky-col">
+          <div class="eyebrow-line">Our story</div>
+          <h2 class="display-md" id="story-title">From a group chat to an organization.</h2>
+          <dl class="spec">
+            <div><dt>Began as</dt><dd>A WhatsApp group of ten friends</dd></div>
+            <div><dt>Today</dt><dd>1,150+ members across seven graduate schools</dd></div>
+            <div><dt>Status</dt><dd>Official Stanford student organization</dd></div>
+          </dl>
+        </div>
+        <div class="prose drop-cap">
+          <p>Stanford Founders began as a casual WhatsApp group of ten friends sharing entrepreneurial events, resources, and opportunities across different graduate schools at Stanford.</p>
+          <p>We noticed the difficulty Stanford graduate students faced in finding cofounders and accessing entrepreneurial resources from other schools. The group aimed to bridge that gap.</p>
+          <p>The chat grew from 10 to 1,150+ members, highlighting the need for the network. We turned the group into an official student organization, offering programs and events for cross-disciplinary Stanford graduate students at the early stage of their startup development.</p>
+          <h3><span class="mono">02</span>Mission</h3>
+          <p>Stanford Founders' Club is a dynamic community of cross-disciplinary Stanford graduate students.</p>
+          <p>We support members at the early stages of company-building through programming, dinners, sector mixers, and introductions across the seven Stanford graduate schools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="section pillars" id="what-we-do" aria-labelledby="pillars-title">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow-line">What we do</div>
+          <h2 class="display-md" id="pillars-title">Built for graduate founders.</h2>
+        </div>
+        <p class="lede-serif">Programming, co-founder matching, sector mixers, and investor access for the early stages of company-building.</p>
+      </div>
+
+      <ol class="ledger">
+        <li>
+          <a href="services.html#programming">
+            <span class="no">01</span>
+            <div>
+              <h3>Founder programming</h3>
+              <p>Firesides with operators who have shipped, from PhD spinouts to GSB-led companies. Workshops on fundraising, recruiting, and first-customer GTM.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html#matching">
+            <span class="no">02</span>
+            <div>
+              <h3>Co-founder matching</h3>
+              <p>Engineers, scientists, and operators meet across the seven schools. Most matches start at a single dinner and end at a Y Combinator interview.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html#mixers">
+            <span class="no">03</span>
+            <div>
+              <h3>Sector mixers</h3>
+              <p>Bio, climate, defense, AI infrastructure, fintech. Small-format dinners with founders working on the same wedge of the market.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html#investors">
+            <span class="no">04</span>
+            <div>
+              <h3>Investor access</h3>
+              <p>Demo Day puts 90 startups in front of 300+ investors in a single afternoon. Direct introductions to partners at Unusual, Pear, NEA, a16z, DCM, and BlackRock.</p>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ol>
+
+      <div class="after">
+        <a href="services.html" class="link-arrow">All services <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo mosaic -->
+  <section class="section section--tinted" aria-label="Photographs from recent events">
+    <div class="wrap">
+      <div class="mosaic">
+        <figure class="fig m1 reveal">
+          <div class="photo-frame photo-frame--3x2">
+            <img src="images/events/dd25-tresidder-wide.jpg" alt="A packed Tresidder Oak Lounge seen from the back of the room, stage ahead" width="1800" height="1350" loading="lazy">
+          </div>
+          <figcaption><span class="fig-no">Fig. 01</span>Demo Day 2025, Tresidder Oak Lounge</figcaption>
+        </figure>
+        <figure class="fig m2 reveal">
+          <div class="photo-frame photo-frame--3x4">
+            <img src="images/events/dd25-pitch-podium.jpg" alt="A founder at the podium holding a microphone" width="1800" height="1200" loading="lazy" style="object-position: 30% 25%;">
+          </div>
+          <figcaption><span class="fig-no">Fig. 02</span>A founder pitches at Demo Day</figcaption>
+        </figure>
+        <div class="note">
+          <span class="mono">Figs. 01–03</span>
+          <p>Demo Day in the spring. Dinners, mixers, and firesides in between.</p>
+        </div>
+        <figure class="fig m3 reveal">
+          <div class="photo-frame photo-frame--16x9">
+            <img src="images/events/magic-room-table.jpg" alt="A long dinner table with many members talking" width="1800" height="1200" loading="lazy">
+          </div>
+          <figcaption><span class="fig-no">Fig. 03</span>Magic Room dinner series</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder voices -->
+  <section class="section voices" aria-labelledby="voices-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow-line">Founder voices</div>
+        <h2 class="display-md" id="voices-title">Members on the network.</h2>
+        <p>Four graduate founders on what the community has been for them.</p>
+      </div>
+      <div class="voices-photo">
+
+        <article class="voice-photo">
+          <p class="quote">Stanford Founders provided exactly the interdisciplinary environment I needed to find my technical co-founder.</p>
+          <div class="attr">
+            <img class="portrait" src="images/headshots/lukas.jpg" alt="Lukas Klaiber" width="1920" height="2560" loading="lazy">
+            <div class="who">
+              <div class="name">Lukas Klaiber</div>
+              <div class="role">Former Student Advisor</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="voice-photo">
+          <p class="quote">The level of support and resources available within this community is unmatched on campus.</p>
+          <div class="attr">
+            <img class="portrait" src="images/headshots/xinmeng.jpeg" alt="Xinmeng Zeng" width="1017" height="1616" loading="lazy">
+            <div class="who">
+              <div class="name">Xinmeng Zeng</div>
+              <div class="role">Former VP of Finance</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="voice-photo">
+          <p class="quote">Being part of this organization wasn't just about networking. It was about community.</p>
+          <div class="attr">
+            <img class="portrait" src="images/headshots/johnny.jpeg" alt="Johnny Chang" width="1047" height="1154" loading="lazy">
+            <div class="who">
+              <div class="name">Johnny Chang</div>
+              <div class="role">Former President</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="voice-photo">
+          <p class="quote">There is no better place on campus for graduate students to go from idea to funded company.</p>
+          <div class="attr">
+            <img class="portrait" src="images/headshots/pricilla.jpeg" alt="Priscilla Russo" width="1600" height="1387" loading="lazy">
+            <div class="who">
+              <div class="name">Priscilla Russo</div>
+              <div class="role">Former Co-VP of Community Initiatives</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Where we fit -->
+  <section class="section section--ink fit" aria-labelledby="fit-title">
+    <div class="wrap">
+      <div class="eyebrow-line">Where we fit</div>
+      <h2 class="display-md" id="fit-title">Where Stanford Founders fits.</h2>
+      <div class="tri">
+        <div>
+          <span class="numeral">I</span>
+          <h3>Where We Fit</h3>
+          <p>Stanford has plenty of entrepreneurship infrastructure, including StartX, GSB E-Club, BASES, ASES, STVP, and more. Stanford Founders tries to help early, when graduate students are transitioning from research to startup and seeking a new community.</p>
+        </div>
+        <div>
+          <span class="numeral">II</span>
+          <h3>Values</h3>
+          <p>We value diversity, collaboration, and integrity in all our endeavors, fostering a supportive and dynamic ecosystem that propels entrepreneurial success.</p>
+        </div>
+        <div>
+          <span class="numeral">III</span>
+          <h3>Community</h3>
+          <p>Our community of 1,150+ graduate student founders thrive by collaborating. Stanford Founders connects them with resources, investors, and like-minded co-founders across every school.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="band-photo close" aria-labelledby="close-title">
+    <img src="images/events/demo-chat.jpg" alt="Attendees talking animatedly at a table, name tags on" width="2048" height="1365" loading="lazy">
+    <div class="wrap">
+      <h2 class="display-md" id="close-title">Transform your ideas into impact.</h2>
+      <div class="actions">
+        <a href="https://forms.gle/DWG3xHtUywoQrMCA6" target="_blank" rel="noopener" class="btn on-photo">Join the community</a>
+        <a href="events.html#demo-day" class="mono next">Next Demo Day · May 2027</a>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <div id="footer-placeholder"></div>
-
 </body>
 </html>

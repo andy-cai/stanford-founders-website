@@ -4,122 +4,203 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Events | Stanford Founders</title>
-<meta name="description" content="Stanford Founders events. Demo Day 2025 recap, weekly events on Luma, and the next Demo Day on May 7, 2026.">
+<meta name="description" content="Stanford Founders events: weekly firesides, dinners, and mixers on Luma, a recap of Demo Day 2025, and the next Demo Day in May 2027.">
 <link rel="stylesheet" href="static/css/styles.css">
+<link rel="icon" href="assets/logo/SFC_Cardinal.svg" type="image/svg+xml">
 <script src="static/js/components.js" defer></script>
+<style>
+/* ── Events page ── */
+
+/* Opener */
+.opener { padding-top: 88px; }
+.opener .display { max-width: 16ch; margin-bottom: 24px; }
+.opener .lede-serif { margin-bottom: 48px; }
+.opener .luma-card p { margin-top: 4px; }
+
+/* Next Demo Day */
+.next-dd .grid { gap: 40px; }
+@media (min-width: 900px) { .next-dd .grid { gap: 72px; align-items: center; } }
+.next-dd .display { margin-bottom: 20px; }
+.next-dd .announce { font-size: 17px; line-height: 1.6; color: var(--text-2); max-width: 40ch; margin-bottom: 28px; }
+.next-dd .spec > div { grid-template-columns: 120px 1fr; padding: 14px 0; }
+.next-dd .spec dd { font-size: 16px; }
+
+/* Recap */
+.recap .head { display: grid; gap: 16px; margin-bottom: 48px; }
+@media (min-width: 900px) { .recap .head { grid-template-columns: 5fr 7fr; gap: 72px; align-items: end; } }
+.recap .head .lede-serif { font-size: 19px; }
+.recap .stat-row { margin-bottom: 64px; }
+.strip { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 880px) { .strip { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+
+/* Logos */
+.logos .head { margin-bottom: 40px; }
+.logos .display-md { font-size: clamp(26px, 3vw, 36px); }
+
+/* Closing CTA */
+.close .display-md { max-width: 16ch; margin-bottom: 12px; }
+.close .mono { display: block; color: rgba(255,255,255,0.8); margin-bottom: 32px; }
+.close .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+</style>
 </head>
 <body data-page="events">
-
+<a class="skip-link" href="#main">Skip to content</a>
 <div id="header-placeholder"></div>
 
-<header class="page-hero light">
-  <div class="wrap">
-    <div class="eyebrow">Events</div>
-    <h1>Events</h1>
-  </div>
-</header>
+<main id="main">
 
-<section class="body tight">
-  <div class="wrap-narrow">
+  <!-- Opener -->
+  <section class="section opener" aria-labelledby="events-title">
+    <div class="wrap">
+      <div class="eyebrow-line">Events</div>
+      <h1 class="display" id="events-title">Every week on Luma, and once a year on stage.</h1>
+      <p class="lede-serif">Firesides, co-founder dinners, sector mixers, and pitch nights through the year, and a spring Demo Day that puts 90 startups in front of 300+ investors. Every event is listed on Luma.</p>
 
-    <a href="https://luma.com/stanford-founders-events?period=past" target="_blank" rel="noopener" class="luma-card">
-      <div class="luma-card-content">
-        <div class="eyebrow">Browse on Luma</div>
-        <h3>Events Every Week on Luma</h3>
-      </div>
-      <div class="arrow" aria-hidden="true">→</div>
-    </a>
-
-  </div>
-</section>
-
-<section class="body tight tinted">
-  <div class="wrap-narrow">
-    <div class="section-header">
-      <div class="eyebrow">Recap</div>
-      <h2>Demo Day 2025 Recap</h2>
+      <a href="https://luma.com/stanford-founders-events" target="_blank" rel="noopener" class="luma-card">
+        <div class="luma-card-content">
+          <div class="eyebrow">Browse on Luma</div>
+          <h3>Events every week on Luma</h3>
+          <p>RSVP for what is coming up and browse what we have hosted.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+      </a>
     </div>
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="num">90</div>
-        <div class="label">Startups pitched</div>
-      </div>
-      <div class="stat">
-        <div class="num">300+</div>
-        <div class="label">Investors in the room</div>
-      </div>
-      <div class="stat">
-        <div class="num">1,500+</div>
-        <div class="label">Total attendees</div>
-      </div>
-      <div class="stat">
-        <div class="num">7</div>
-        <div class="label">Stanford graduate schools represented</div>
+  </section>
+
+  <!-- Next Demo Day -->
+  <section class="section section--tinted next-dd" id="demo-day" aria-labelledby="next-title">
+    <div class="wrap">
+      <div class="grid grid-5-7">
+        <div>
+          <div class="eyebrow-line">Next Demo Day</div>
+          <h2 class="display" id="next-title">May 2027</h2>
+          <p class="announce">Date, venue, and applications will be announced here and on Luma.</p>
+          <dl class="spec">
+            <div><dt>When</dt><dd>May 2027, exact date to be announced</dd></div>
+            <div><dt>Where</dt><dd>To be announced</dd></div>
+            <div><dt>Applications</dt><dd>Announced here and on <a href="https://luma.com/stanford-founders-events" target="_blank" rel="noopener">Luma</a></dd></div>
+          </dl>
+        </div>
+        <figure class="fig reveal">
+          <div class="photo-frame photo-frame--3x2">
+            <img src="images/events/demo-panel-stage.jpg" alt="Four panelists on stools on stage in front of a Demo Day banner" width="2048" height="1365" loading="lazy">
+          </div>
+          <figcaption><span class="fig-no">Fig. 01</span>Founder panel at Demo Day</figcaption>
+        </figure>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="body tight">
-  <div class="wrap">
-    <div class="section-header">
-      <div class="eyebrow">Sponsors</div>
-      <h2>With support from</h2>
-    </div>
-    <div class="logo-grid large">
-      <div class="logo-cell"><img src="images/logos/sponsors/unusual-ventures.png" alt="Unusual Ventures"></div>
-      <div class="logo-cell"><img src="images/logos/sponsors/dcm.png" alt="DCM"></div>
-      <div class="logo-cell"><img src="images/logos/sponsors/ases.png" alt="ASES"></div>
-      <div class="logo-cell"><img src="images/logos/sponsors/stanford-ecopreneurship.png" alt="Stanford Ecopreneurship"></div>
-      <div class="logo-cell"><img src="images/logos/sponsors/stanford-energy-club.webp" alt="Stanford Energy Club"></div>
-    </div>
-  </div>
-</section>
+  <!-- Demo Day 2025 recap -->
+  <section class="section recap" aria-labelledby="recap-title">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow-line">Recap</div>
+          <h2 class="display-md" id="recap-title">Demo Day 2025</h2>
+        </div>
+        <p class="lede-serif">Spring 2025 at the Tresidder Oak Lounge, with all seven Stanford graduate schools represented in the room.</p>
+      </div>
 
-<div class="photo-band">
-  <div class="item" style="background-image: url('images/events/dd25-pitch-hyperthread.jpg');"></div>
-  <div class="item" style="background-image: url('images/events/dd25-investors-vests.jpg');"></div>
-  <div class="item" style="background-image: url('images/events/dd25-pitch-podium.jpg');"></div>
-</div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">90</div>
+          <div class="label">Startups pitched</div>
+        </div>
+        <div class="stat">
+          <div class="num">300+</div>
+          <div class="label">Investors in the room</div>
+        </div>
+        <div class="stat">
+          <div class="num">1,500+</div>
+          <div class="label">Total attendees</div>
+        </div>
+        <div class="stat">
+          <div class="num">7</div>
+          <div class="label">Stanford graduate schools represented</div>
+        </div>
+      </div>
 
-<section class="body tight tinted">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>Investors Including</h2>
+      <div class="strip">
+        <figure class="fig reveal">
+          <div class="photo-frame photo-frame--4x3">
+            <img src="images/events/dd25-pitch-hyperthread.jpg" alt="A founder pitching beside a slide reading We will, We can, We do" width="1800" height="1200" loading="lazy">
+          </div>
+          <figcaption><span class="fig-no">Fig. 02</span>A founder makes the case</figcaption>
+        </figure>
+        <figure class="fig reveal">
+          <div class="photo-frame photo-frame--4x3">
+            <img src="images/events/dd25-investors-vests.jpg" alt="Seated investors with name tags listening to a pitch" width="1800" height="1200" loading="lazy">
+          </div>
+          <figcaption><span class="fig-no">Fig. 03</span>Investors in the audience</figcaption>
+        </figure>
+        <figure class="fig reveal">
+          <div class="photo-frame photo-frame--4x3">
+            <img src="images/events/dd25-pitch-podium.jpg" alt="A founder at the podium holding a microphone" width="1800" height="1200" loading="lazy">
+          </div>
+          <figcaption><span class="fig-no">Fig. 04</span>At the podium</figcaption>
+        </figure>
+      </div>
     </div>
-    <div class="logo-grid">
-      <div class="logo-cell"><img src="images/logos/investors/a16z.png" alt="Andreessen Horowitz"></div>
-      <div class="logo-cell"><img src="images/logos/investors/nea.png" alt="New Enterprise Associates"></div>
-      <div class="logo-cell"><img src="images/logos/investors/blackrock.png" alt="BlackRock"></div>
-      <div class="logo-cell"><img src="images/logos/investors/general-catalyst.svg" alt="General Catalyst"></div>
-      <div class="logo-cell"><img src="images/logos/investors/softbank.png" alt="SoftBank"></div>
-      <div class="logo-cell"><img src="images/logos/investors/pear-vc.png" alt="Pear VC"></div>
-      <div class="logo-cell"><img src="images/logos/investors/500-global.png" alt="500 Global"></div>
-      <div class="logo-cell"><img src="images/logos/investors/plug-and-play.png" alt="Plug and Play"></div>
-      <div class="logo-cell"><img src="images/logos/investors/innovation-endeavors.png" alt="Innovation Endeavors"></div>
-      <div class="logo-cell"><img src="images/logos/investors/wischoff-ventures.jpeg" alt="Wischoff Ventures"></div>
-      <div class="logo-cell"><img src="images/logos/investors/uphonest-capital.webp" alt="Uphonest Capital"></div>
-      <div class="logo-cell"><img src="images/logos/investors/ora-global.png" alt="Ora Global"></div>
-      <div class="logo-cell"><img src="images/logos/investors/upscalex.png" alt="UpScaleX"></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="final-cta">
-  <div class="bg" style="background-image: url('images/events/demo-pitch.jpg');"></div>
-  <div class="scrim"></div>
-  <div class="wrap-narrow">
-    <div class="eyebrow">Demo Day 2026</div>
-    <h2>May 7 at the Tresidder Oak Lounge</h2>
-    <p>RSVP for the next one on Luma.</p>
-    <div class="actions">
-      <a href="https://luma.com/achgqxtn" target="_blank" rel="noopener" class="btn on-cardinal">RSVP on Luma</a>
-      <a href="contact.html" class="btn on-cardinal-secondary">Get in touch</a>
+  <!-- Sponsors -->
+  <section class="section section--tinted logos" aria-labelledby="sponsors-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow-line">Sponsors</div>
+        <h2 class="display-md" id="sponsors-title">With support from</h2>
+      </div>
+      <div class="logo-grid large">
+        <div class="logo-cell"><img src="images/logos/sponsors/unusual-ventures.png" alt="Unusual Ventures" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/sponsors/dcm.png" alt="DCM" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/sponsors/ases.png" alt="ASES" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/sponsors/stanford-ecopreneurship.png" alt="Stanford Ecopreneurship" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/sponsors/stanford-energy-club.webp" alt="Stanford Energy Club" loading="lazy"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Investors -->
+  <section class="section logos" aria-labelledby="investors-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow-line">Investors</div>
+        <h2 class="display-md" id="investors-title">Investors including</h2>
+      </div>
+      <div class="logo-grid">
+        <div class="logo-cell"><img src="images/logos/investors/a16z.png" alt="Andreessen Horowitz" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/nea.png" alt="New Enterprise Associates" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/blackrock.png" alt="BlackRock" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/general-catalyst.svg" alt="General Catalyst" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/softbank.png" alt="SoftBank" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/pear-vc.png" alt="Pear VC" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/500-global.png" alt="500 Global" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/plug-and-play.png" alt="Plug and Play" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/innovation-endeavors.png" alt="Innovation Endeavors" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/wischoff-ventures.jpeg" alt="Wischoff Ventures" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/uphonest-capital.webp" alt="Uphonest Capital" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/ora-global.png" alt="Ora Global" loading="lazy"></div>
+        <div class="logo-cell"><img src="images/logos/investors/upscalex.png" alt="UpScaleX" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="band-photo band-photo--cardinal close" aria-labelledby="close-title">
+    <img src="images/events/dd25-audience-focused.jpg" alt="An attentive Demo Day audience" width="1800" height="1200" loading="lazy">
+    <div class="wrap">
+      <h2 class="display-md" id="close-title">Be in the room next spring.</h2>
+      <span class="mono">Next Demo Day · May 2027</span>
+      <div class="actions">
+        <a href="https://forms.gle/DWG3xHtUywoQrMCA6" target="_blank" rel="noopener" class="btn on-cardinal">Join the community</a>
+        <a href="contact.html" class="btn on-cardinal-secondary">Sponsor or speak</a>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <div id="footer-placeholder"></div>
-
 </body>
 </html>

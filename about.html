@@ -4,68 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Stanford Founders</title>
-<meta name="description" content="Stanford Founders' Club is the first graduate founders organization at Stanford: 1,150+ graduate students across seven schools, grown from a ten-person group chat into an official student organization.">
+<meta name="description" content="Stanford Founders' Club is a dynamic community of cross-disciplinary Stanford graduate students.">
 <link rel="stylesheet" href="static/css/styles.css">
 <link rel="icon" href="assets/logo/SFC_Cardinal.svg" type="image/svg+xml">
 <script src="static/js/components.js" defer></script>
 <style>
-  /* ── Opening spread ── */
-  .about-open { padding: 88px 0 72px; }
+  /* Opening spread: headline left, lede bottom-aligned right */
+  .about-open { padding: 88px 0 56px; }
   .about-open .grid { align-items: end; }
-  .about-open .display { max-width: 19ch; }
   .about-open .lede-serif { max-width: 36ch; }
-  @media (min-width: 900px) {
-    .about-open .lede-serif { padding-bottom: 8px; }
-  }
-  .about-open .rule--strong { margin: 64px 0 40px; }
+  @media (max-width: 880px) { .about-open { padding: 56px 0 40px; } }
+
+  /* Hero photograph */
+  .about-band { min-height: 52vh; padding: 0; }
+  .about-band::after { background: linear-gradient(to top, rgba(20,14,14,0.55) 0%, rgba(20,14,14,0.15) 45%, rgba(20,14,14,0.10) 100%); }
+  @media (max-width: 880px) { .about-band { min-height: 40vh; } }
+
+  /* History: sticky label + prose */
+  .history .chapter-head h2 { font-size: clamp(26px, 2.6vw, 34px); }
+  .history .chapter { padding-top: 0; border-top: 0; }
+
+  /* Mission & Values: three ruled columns */
+  .mv-head { margin-bottom: 40px; }
+  .principles-rule { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+  .principles-rule > div { padding: 32px 28px 36px; border-left: 1px solid var(--line); }
+  .principles-rule > div:first-child { border-left: 0; padding-left: 0; }
+  .principles-rule .num { font-family: var(--mono); font-size: 12px; color: var(--cardinal); letter-spacing: 0.08em; display: block; margin-bottom: 14px; }
+  .principles-rule h3 { font-family: var(--serif); font-weight: 600; font-size: 26px; letter-spacing: -0.012em; color: var(--text); margin-bottom: 12px; }
+  .principles-rule p { font-size: 16px; line-height: 1.6; color: var(--text-2); }
   @media (max-width: 880px) {
-    .about-open { padding: 56px 0 56px; }
-    .about-open .rule--strong { margin: 40px 0 32px; }
+    .principles-rule { grid-template-columns: 1fr; }
+    .principles-rule > div { border-left: 0; padding: 28px 0; border-top: 1px solid var(--line); }
+    .principles-rule > div:first-child { border-top: 0; }
+  }
+  @media (prefers-color-scheme: dark) {
+    .principles-rule h3 { color: #FFFAEB; }
+    .principles-rule .num { color: #E8A5A5; }
   }
 
-  /* ── Full-bleed photograph, no copy over it ── */
-  .about-band { padding: 0; min-height: 56vh; }
-  @media (max-width: 880px) { .about-band { min-height: 42vh; } }
-
-  /* ── Story chapters ── */
-  .about-story .story-head { max-width: 60ch; margin-bottom: 56px; }
-  .about-story .story-head p { font-size: 17px; line-height: 1.6; color: var(--text-2); }
-  .about-interlude {
-    display: grid; gap: 32px; align-items: center;
-    padding: 8px 0 56px;
-  }
-  @media (min-width: 900px) {
-    .about-interlude { grid-template-columns: 4fr 8fr; gap: 56px; }
-  }
-  .about-interlude .pullquote { margin: 0; }
-  .about-interlude .fig { max-width: 360px; }
-  @media (max-width: 880px) { .about-interlude .fig { max-width: 300px; } }
-
-  /* ── Positioning ledger ── */
-  .about-fit .display-md { max-width: 20ch; margin-bottom: 48px; }
-  .about-fit .prose p { max-width: 48ch; }
-  .about-fit .grid { align-items: start; }
-
-  /* ── Values glossary ── */
-  .about-values .display-md { max-width: 22ch; margin-bottom: 48px; }
-
-  /* ── Timeline + photo pair ── */
-  .about-arc { padding-top: 0; }
-  .about-arc .timeline { margin-top: 8px; }
-  .about-pair { display: grid; gap: 32px; margin-top: 80px; }
-  @media (min-width: 900px) {
-    .about-pair { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .about-pair .fig:nth-child(2) { margin-top: 48px; }
-  }
-  @media (max-width: 880px) { .about-pair { margin-top: 56px; } }
-
-  /* ── Closing call ── */
-  .about-cta { padding: 128px 0 112px; }
+  /* Closing CTA */
+  .about-cta { padding: 120px 0; }
   .about-cta .display-md { max-width: 14ch; }
-  .about-cta p.line { font-size: 19px; line-height: 1.5; max-width: 40ch; margin-top: 18px; }
-  .about-cta .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
-  .about-cta .next { display: block; margin-top: 36px; color: rgba(255,255,255,0.72); }
-  @media (max-width: 880px) { .about-cta { padding: 88px 0 80px; } }
+  .about-cta p { max-width: 44ch; margin-bottom: 28px; font-size: 18px; }
+  .about-cta .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .about-cta .mono { display: block; margin-top: 28px; color: rgba(255,255,255,0.7); }
+  @media (max-width: 880px) { .about-cta { padding: 80px 0; } }
 </style>
 </head>
 <body data-page="about">
@@ -74,197 +57,74 @@
 
 <main id="main">
 
-  <!-- 1. Opening spread -->
-  <section class="section about-open">
+  <section class="about-open">
     <div class="wrap">
-      <div class="eyebrow-line">About</div>
+      <span class="eyebrow-line">About</span>
       <div class="grid grid-7-5">
         <h1 class="display">The first graduate founders organization at Stanford.</h1>
-        <p class="lede-serif">A dynamic community of cross-disciplinary Stanford graduate students, built for the moment a research idea starts to look like a company.</p>
-      </div>
-      <hr class="rule rule--strong">
-      <div class="stat-row">
-        <div class="stat">
-          <div class="num">1,150<sup>+</sup></div>
-          <div class="label">Graduate founders<span class="source">Across seven Stanford schools</span></div>
-        </div>
-        <div class="stat">
-          <div class="num">90</div>
-          <div class="label">Startups pitched at Demo Day<span class="source">Spring 2025 · Stanford Daily</span></div>
-        </div>
-        <div class="stat">
-          <div class="num">300<sup>+</sup></div>
-          <div class="label">Investors in the room<span class="source">Spring 2025 Demo Day</span></div>
-        </div>
+        <p class="lede-serif">Stanford Founders' Club is a dynamic community of cross-disciplinary Stanford graduate students.</p>
       </div>
     </div>
   </section>
 
-  <!-- 2. Full-bleed photograph -->
-  <section class="band-photo band-photo--even about-band" aria-label="Demo Day 2025 at Tresidder Oak Lounge">
-    <img src="images/events/dd25-tresidder-wide.jpg" alt="A packed Tresidder Oak Lounge at Demo Day 2025, seen from the back of the room with the stage ahead" width="1800" height="1350" fetchpriority="high">
-    <div class="photo-credit">Demo Day 2025, Tresidder Oak Lounge</div>
+  <section class="band-photo band-photo--even about-band" aria-label="Magic Room dinner series">
+    <img src="images/events/magic-room-table.jpg" alt="A long dinner table of Stanford Founders members in conversation" width="1800" height="1200" fetchpriority="high">
+    <div class="photo-credit">Magic Room dinner series</div>
   </section>
 
-  <!-- 3. The story, in chapters -->
-  <section class="section about-story">
+  <section class="section history">
     <div class="wrap">
-      <div class="story-head">
-        <div class="eyebrow-line">Our story</div>
-        <p>Stanford Founders did not start as an organization. It started as a group chat, and it grew because the need was real.</p>
-      </div>
-
       <article class="chapter">
         <div class="chapter-head">
           <span class="no">01 —</span>
-          <h2>A group chat</h2>
+          <h2>History</h2>
         </div>
         <div class="prose drop-cap">
-          <p>Stanford Founders began as a casual WhatsApp group: ten friends, spread across different graduate schools at Stanford, sharing entrepreneurial events, resources, and opportunities with one another.</p>
-          <p>There was no charter and no calendar. Someone would hear about a pitch competition in one school, a speaker in another, a grant nobody in their own department had mentioned, and pass it along.</p>
-        </div>
-      </article>
-
-      <div class="about-interlude">
-        <figure class="fig reveal">
-          <div class="photo-frame photo-frame--3x4">
-            <img src="images/events/pitch-night-hosting.jpg" alt="Two hosts with a microphone in front of a Co-founder Matching Pitch Night title slide" width="1350" height="1800" loading="lazy">
-          </div>
-          <figcaption><span class="fig-no">Fig. 01</span>Co-founder matching pitch night</figcaption>
-        </figure>
-        <blockquote class="pullquote">
-          The chat grew from ten friends to more than a thousand members.
-          <cite>From our founding story</cite>
-        </blockquote>
-      </div>
-
-      <article class="chapter">
-        <div class="chapter-head">
-          <span class="no">02 —</span>
-          <h2>Bridging the schools</h2>
-        </div>
-        <div class="prose drop-cap">
-          <p>We noticed the difficulty Stanford graduate students faced in finding cofounders and accessing entrepreneurial resources from other schools. An engineer rarely met the business student two buildings over; a scientist with a promising result had no obvious way to find the operator who could help build a company around it.</p>
-          <p>The group aimed to bridge that gap. It grew from ten people to 1,150+ members, highlighting the need for the network: the demand was there long before the organization was.</p>
-        </div>
-      </article>
-
-      <article class="chapter">
-        <div class="chapter-head">
-          <span class="no">03 —</span>
-          <h2>An official home</h2>
-        </div>
-        <div class="prose drop-cap">
-          <p>We turned the group into an official student organization, offering programs and events for cross-disciplinary Stanford graduate students at the early stage of their startup development.</p>
-          <p>Today that means programming, co-founder dinners, sector mixers, and introductions across the seven Stanford graduate schools, and a Demo Day each spring that puts our founders in front of investors. Our community of 1,150+ graduate student founders thrives by collaborating; Stanford Founders connects them with resources, investors, and like-minded co-founders across every school.</p>
+          <p>Stanford Founders began as a casual WhatsApp group of ten friends sharing entrepreneurial events, resources, and opportunities across different graduate schools at Stanford.</p>
+          <p>We noticed the difficulty Stanford graduate students faced in finding cofounders and accessing entrepreneurial resources from other schools. The group aimed to bridge that gap.</p>
+          <p>The chat grew from 10 to 1,150+ members, highlighting the need for the network. We turned the group into an official student organization, offering programs and events for cross-disciplinary Stanford graduate students at the early stage of their startup development.</p>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- 4. Where we fit -->
-  <section class="section section--tinted about-fit">
+  <section class="section section--tinted">
     <div class="wrap">
-      <div class="eyebrow-line">Where we fit</div>
-      <h2 class="display-md">Early, and across every school.</h2>
-      <div class="grid grid-5-7">
-        <div class="prose">
+      <div class="mv-head">
+        <span class="eyebrow-line">Mission &amp; Values</span>
+        <h2 class="display-md">Support each other.</h2>
+      </div>
+      <div class="principles-rule">
+        <div>
+          <span class="num">I</span>
+          <h3>Where We Fit</h3>
           <p>Stanford has plenty of entrepreneurship infrastructure, including StartX, GSB E-Club, BASES, ASES, STVP, and more. Stanford Founders tries to help early, when graduate students are transitioning from research to startup and seeking a new community.</p>
         </div>
-        <dl class="spec">
-          <div>
-            <dt>When</dt>
-            <dd><strong>Early.</strong> The transition from research to startup, before a team or a company exists.</dd>
-          </div>
-          <div>
-            <dt>Who</dt>
-            <dd><strong>Graduate students</strong> from all seven Stanford schools, not one department.</dd>
-          </div>
-          <div>
-            <dt>How</dt>
-            <dd><strong>Programming,</strong> co-founder dinners, sector mixers, introductions, and Demo Day.</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Values as a glossary -->
-  <section class="section about-values">
-    <div class="wrap">
-      <div class="eyebrow-line">Values</div>
-      <h2 class="display-md">Three words we hold ourselves to.</h2>
-      <div class="glossary">
         <div>
-          <div class="headword">diversity</div>
-          <div class="pos"><b>n.</b> · who is in the room</div>
-          <p class="sense"><span class="n">1.</span>Engineers, scientists, and operators from all seven Stanford schools in one network, so the co-founder you need is rarely more than an introduction away.</p>
+          <span class="num">II</span>
+          <h3>Values</h3>
+          <p>We value diversity, collaboration, and integrity in all our endeavors, fostering a supportive and dynamic ecosystem that propels entrepreneurial success.</p>
         </div>
         <div>
-          <div class="headword">collaboration</div>
-          <div class="pos"><b>n.</b> · how we build</div>
-          <p class="sense"><span class="n">1.</span>Members thrive by collaborating: sharing resources, investors, and like-minded co-founders across every school rather than guarding them.</p>
-        </div>
-        <div>
-          <div class="headword">integrity</div>
-          <div class="pos"><b>n.</b> · how we behave</div>
-          <p class="sense"><span class="n">1.</span>Honesty in all our endeavors, fostering a supportive and dynamic ecosystem that propels entrepreneurial success.</p>
+          <span class="num">III</span>
+          <h3>Community</h3>
+          <p>Our community of 1,150+ graduate student founders thrive by collaborating. Stanford Founders connects them with resources, investors, and like-minded co-founders across every school.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. Timeline + 7. Photo pair -->
-  <section class="section about-arc">
-    <div class="wrap">
-      <div class="eyebrow-line">In three moves</div>
-      <ol class="timeline">
-        <li>
-          <span class="mark">I</span>
-          <h3>Ten friends</h3>
-          <p>A WhatsApp group across the graduate schools, trading events, resources, and opportunities.</p>
-        </li>
-        <li>
-          <span class="mark">II</span>
-          <h3>1,150+ members</h3>
-          <p>The chat outgrows itself and proves the need for a cross-school founder network.</p>
-        </li>
-        <li class="is-now">
-          <span class="mark">III</span>
-          <h3>Official student organization</h3>
-          <p>Programs, co-founder dinners, sector mixers, and Demo Day each spring.</p>
-        </li>
-      </ol>
-
-      <div class="about-pair">
-        <figure class="fig reveal">
-          <div class="photo-frame photo-frame--4x3 photo-frame--zoom">
-            <img src="images/events/magic-room-table.jpg" alt="A long dinner table of graduate founders in conversation at a Magic Room dinner" width="1800" height="1200" loading="lazy">
-          </div>
-          <figcaption><span class="fig-no">Fig. 02</span>Magic Room dinner series</figcaption>
-        </figure>
-        <figure class="fig reveal">
-          <div class="photo-frame photo-frame--4x3 photo-frame--zoom">
-            <img src="images/events/sophie-fireside.jpg" alt="Two speakers on stools in a fireside chat in front of a Demo Day banner" width="1800" height="1200" loading="lazy">
-          </div>
-          <figcaption><span class="fig-no">Fig. 03</span>Fireside chat at Demo Day</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. Closing call -->
   <section class="band-photo about-cta">
-    <img src="images/events/networking-portrait.jpg" alt="Two members talking in a warm-lit room at a Stanford Founders event" width="1800" height="1200" loading="lazy">
+    <img src="images/events/sophie-fireside.jpg" alt="Two speakers in conversation on stools at a fireside chat" width="2048" height="1365" loading="lazy">
     <div class="wrap">
-      <div class="eyebrow-line">Join</div>
+      <span class="eyebrow-line">Join</span>
       <h2 class="display-md">Become a member.</h2>
-      <p class="line">Open to everyone interested in using start-ups to solve problems.</p>
+      <p>Open to everyone interested in using start-ups to solve problems.</p>
       <div class="actions">
         <a href="https://forms.gle/DWG3xHtUywoQrMCA6" target="_blank" rel="noopener" class="btn on-photo">Apply now</a>
         <a href="services.html" class="btn on-photo-secondary">See what we do</a>
       </div>
-      <span class="mono next">Next Demo Day · May 2027</span>
+      <span class="mono">Next Demo Day · May 2027</span>
     </div>
   </section>
 

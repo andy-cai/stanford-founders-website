@@ -1741,6 +1741,15 @@ body.nav-open { overflow: hidden; }
   .pill-tag { color: #F5F2EC; }
   .link-arrow { color: #E8A5A5; border-color: rgba(232,165,165,0.35); }
   .stat-row .stat .num { color: #E8A5A5; }
+  /* Cardinal accents are too dim on the dark canvas; lift them to the rose tint */
+  .eyebrow-line, .fig-no, .ledger .no, .ledger .arrow, .chapter .chapter-head .no, .timeline .mark,
+  .glossary .pos b, .glossary .sense .n, .display .accent, .display-md .accent,
+  .drop-cap > p:first-of-type::first-letter, .year-strip ul li::before, .pill-tag .dot { color: #E8A5A5; }
+  .pullquote { border-left-color: #E8A5A5; }
+  .timeline li::before { border-color: #E8A5A5; }
+  .timeline li.is-now::before { background: #E8A5A5; }
+  .pill-tag .dot { background: #E8A5A5; }
+  .band-photo .eyebrow-line { color: var(--sandstone); }
   .skip-link { background: var(--cardinal); }
 }
 

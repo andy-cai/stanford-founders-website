@@ -1,0 +1,223 @@
+/* ──────────────────────────────────────────────────────────────
+   Stanford Startup Atlas, re-themed for stanfordfounders.stanford.edu
+   Everything is scoped under .atlas-app and every token is prefixed
+   --at- so nothing leaks into styles.css.
+   ────────────────────────────────────────────────────────────── */
+.atlas-app{
+  --at-ground:#FAF8F5; --at-surface:#FFFFFF; --at-sunk:#F1EDE6; --at-ink:#1A1A2E; --at-muted:#6B7280; --at-line:#E2DDD5;
+  --at-accent:#8C1515; --at-accent-ink:#FFFFFF;
+  --at-money:#7A5200; --at-money-soft:#F8EBC8; --at-warn:#7A3E6B;
+  --at-s1:#2C6FC7; --at-s2:#7B4FCB; --at-s3:#0B8573; --at-s4:#B67A0A; --at-s5:#8C1515; --at-s6:#5A6B75;
+  --at-display:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --at-body:'Source Sans 3',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --at-mono:'Source Sans 3',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --at-ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme: dark){
+  .atlas-app{
+    --at-ground:#1A1A2E; --at-surface:#23202E; --at-sunk:#13111C; --at-ink:#F5F2EC; --at-muted:#A8A29E; --at-line:#3A3548;
+    --at-accent:#8C1515; --at-accent-ink:#FFFFFF;
+    --at-money:#F0C36A; --at-money-soft:#32280E; --at-warn:#E0A6CF;
+    --at-s1:#6AA9F0; --at-s2:#B197F0; --at-s3:#4CC9B4; --at-s4:#E8B652; --at-s5:#F08570; --at-s6:#9DB0BA;
+  }
+}
+.atlas-app *{box-sizing:border-box}
+.atlas-app{background:var(--at-ground);color:var(--at-ink);font-family:var(--at-body);font-size:16px;line-height:1.55;margin:0}
+.atlas-app .wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4vw,40px);padding-block:32px 72px}
+.atlas-app button,.atlas-app input,.atlas-app select{font:inherit;color:inherit}
+.atlas-app a{color:inherit}
+.atlas-app :focus-visible{outline:2px solid var(--at-s1);outline-offset:2px}
+.atlas-app .mono{font-family:var(--at-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--at-muted)}
+.atlas-app [data-s="1"]{--sc:var(--at-s1)}.atlas-app [data-s="2"]{--sc:var(--at-s2)}.atlas-app [data-s="3"]{--sc:var(--at-s3)}.atlas-app [data-s="4"]{--sc:var(--at-s4)}.atlas-app [data-s="5"]{--sc:var(--at-s5)}.atlas-app [data-s="6"]{--sc:var(--at-s6)}
+
+/* ---------- masthead ---------- */
+.atlas-app .mast{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:20px}
+.atlas-app h1{font-family:var(--at-display);font-weight:800;font-size:clamp(40px,7vw,84px);line-height:.92;letter-spacing:-.035em;margin:10px 0 0;text-wrap:balance}
+.atlas-app h1 span{display:inline-block}
+.atlas-app .lede{max-width:46ch;color:var(--at-muted);margin:0;font-size:17px}
+.atlas-app .lede b{color:var(--at-ink);font-weight:600}
+
+/* ---------- map ---------- */
+.atlas-app .map{position:relative;margin-bottom:12px}
+.atlas-app .map svg{display:block;width:100%;height:auto;overflow:visible}
+.atlas-app .route{fill:none;stroke:var(--at-line);stroke-width:2;stroke-dasharray:3 9;stroke-linecap:round}
+.atlas-app .route-draw{fill:none;stroke:var(--at-ink);stroke-width:2;stroke-linecap:round;opacity:.55}
+.atlas-app .terr{fill:var(--sc);opacity:.07;transition:opacity .4s}
+.atlas-app .terr-label{font-family:var(--at-display);font-weight:700;font-size:17px;fill:var(--at-ink)}
+.atlas-app svg.narrow .terr-label{font-size:13px}
+.atlas-app .terr-num{font-family:var(--at-mono);font-size:12px;fill:var(--sc);letter-spacing:.08em}
+.atlas-app .dot{fill:var(--sc);cursor:pointer;transform-box:fill-box;transform-origin:center;transition:opacity .45s var(--at-ease),r .25s var(--at-ease)}
+.atlas-app .dot.off{opacity:.13}
+.atlas-app .dot:hover,.atlas-app .dot.hot{r:11}
+.atlas-app svg.hl .dot:not(.inhl){opacity:.13}
+.atlas-app svg.hl .terr.inhl{opacity:.16}
+.atlas-app .tip{position:absolute;pointer-events:none;background:var(--at-ink);color:var(--at-ground);padding:7px 11px;border-radius:7px;font-size:13px;line-height:1.3;max-width:260px;transform:translate(-50%,calc(-100% - 14px));opacity:0;transition:opacity .15s;z-index:3}
+.atlas-app .tip.on{opacity:1}
+.atlas-app .tip small{display:block;font-family:var(--at-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.atlas-app .legend{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:36px}
+.atlas-app .leg{all:unset;box-sizing:border-box;cursor:pointer;border-top:3px solid var(--sc);padding:10px 4px 6px;display:flex;flex-direction:column;gap:2px;transition:transform .25s var(--at-ease)}
+.atlas-app .leg:hover{transform:translateY(-3px)}
+.atlas-app .leg:focus-visible{outline:2px solid var(--at-s1);outline-offset:2px}
+.atlas-app .leg .nm{font-family:var(--at-display);font-weight:700;font-size:16px;line-height:1.15}
+.atlas-app .leg .ct{font-family:var(--at-mono);font-size:12px;color:var(--at-muted);font-variant-numeric:tabular-nums}
+
+/* ---------- situations ---------- */
+.atlas-app .sit{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.atlas-app .sit-row{display:flex;gap:8px;flex-wrap:wrap}
+.atlas-app .preset{background:transparent;border:1px solid var(--at-ink);border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:500;font-size:15px;transition:background-color .2s,color .2s,transform .2s var(--at-ease)}
+.atlas-app .preset:hover{background:var(--at-ink);color:var(--at-ground);transform:translateY(-2px)}
+
+/* ---------- filter panel ---------- */
+.atlas-app .panel{background:var(--at-surface);border:1px solid var(--at-line);border-radius:18px;padding:clamp(18px,3vw,30px);margin-bottom:10px;scroll-margin-top:16px;display:flex;flex-direction:column;gap:22px}
+.atlas-app .panel-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.atlas-app .panel-top h2{font-family:var(--at-display);font-weight:700;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;margin:0;line-height:1.1}
+.atlas-app .panel-top h2 b{font-weight:800;font-variant-numeric:tabular-nums}
+.atlas-app .groups{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr) minmax(0,1.1fr);gap:24px 32px}
+.atlas-app .fgroup{display:flex;flex-direction:column;gap:10px;min-width:0}
+.atlas-app .fgroup h3{font-family:var(--at-display);font-weight:700;font-size:19px;margin:0;letter-spacing:-.01em}
+.atlas-app .fgroup h3 em{font-style:normal;font-family:var(--at-mono);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--at-muted);margin-left:8px}
+.atlas-app .chips{display:flex;flex-wrap:wrap;gap:8px}
+.atlas-app .chip{background:var(--at-ground);border:1px solid transparent;border-radius:999px;padding:7px 13px;font-size:14.5px;line-height:1.2;cursor:pointer;display:inline-flex;align-items:baseline;gap:7px;transition:background-color .18s,border-color .18s,color .18s,transform .18s var(--at-ease),opacity .25s}
+.atlas-app .chip .n{font-family:var(--at-mono);font-size:11px;color:var(--at-muted);font-variant-numeric:tabular-nums;transition:color .18s}
+.atlas-app .chip:hover{border-color:var(--at-ink);transform:translateY(-1px)}
+.atlas-app .chip:active{transform:scale(.96)}
+.atlas-app .chip[aria-pressed="true"]{background:var(--at-ink);color:var(--at-ground)}
+.atlas-app .chip[aria-pressed="true"] .n{color:var(--at-ground);opacity:.7}
+.atlas-app .chip.zero{opacity:.38}
+.atlas-app .clear{all:unset;cursor:pointer;font-size:14px;color:var(--at-muted);text-decoration:underline;text-underline-offset:3px}
+.atlas-app .clear:hover{color:var(--at-ink)}
+.atlas-app .clear:focus-visible{outline:2px solid var(--at-s1)}
+.atlas-app .strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--at-ground);border-bottom:1px solid var(--at-line);padding-block:10px;display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;min-height:48px}
+.atlas-app .strip .ct{font-family:var(--at-display);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;margin-right:4px}
+.atlas-app .strip .ct small{font-family:var(--at-body);font-weight:400;font-size:13px;color:var(--at-muted);margin-left:5px}
+.atlas-app .tok{all:unset;cursor:pointer;font-size:13px;padding:3px 10px;border-radius:999px;background:var(--at-ink);color:var(--at-ground);display:inline-flex;gap:6px;align-items:center}
+.atlas-app .tok:focus-visible{outline:2px solid var(--at-s1);outline-offset:2px}
+.atlas-app .tok::after{content:"\00d7";opacity:.7}
+.atlas-app .strip .hint{font-size:13px;color:var(--at-muted)}
+.atlas-app .strip .edit{margin-left:auto}
+
+/* ---------- stages ---------- */
+.atlas-app .stage{padding-block:36px 8px;scroll-margin-top:72px}
+.atlas-app .stage-head{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.atlas-app .stage-num{font-family:var(--at-display);font-weight:800;font-size:clamp(44px,6vw,72px);line-height:.8;color:var(--sc);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.atlas-app .stage-mark{width:14px;height:14px;border-radius:50%;background:var(--sc);flex:none}
+.atlas-app .stage h2{font-family:var(--at-display);font-weight:700;font-size:clamp(24px,3vw,34px);line-height:1.05;margin:0;letter-spacing:-.02em}
+.atlas-app .stage-head p{grid-column:2;margin:0;color:var(--at-muted);max-width:62ch}
+.atlas-app .stage-ct{font-family:var(--at-mono);font-size:13px;color:var(--at-muted)}
+.atlas-app .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.atlas-app .card{all:unset;box-sizing:border-box;cursor:pointer;background:var(--at-surface);border:1px solid var(--at-line);border-radius:12px;padding:16px 18px 14px;display:flex;flex-direction:column;gap:8px;position:relative;transition:transform .25s var(--at-ease),border-color .2s,box-shadow .25s}
+.atlas-app .card:hover{transform:translateY(-3px);border-color:var(--sc);box-shadow:0 10px 24px -14px var(--sc)}
+.atlas-app .card:focus-visible{outline:2px solid var(--at-s1);outline-offset:2px}
+.atlas-app .kind{display:flex;align-items:center;gap:7px;font-family:var(--at-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--at-muted)}
+.atlas-app .kind i{width:8px;height:8px;border-radius:50%;background:var(--sc);flex:none}
+.atlas-app .kind .flag{margin-left:auto;color:var(--at-warn)}
+.atlas-app .card h3{font-family:var(--at-display);font-weight:700;font-size:19px;line-height:1.15;margin:0;text-wrap:balance}
+.atlas-app .card p{margin:0;color:var(--at-muted);font-size:14.5px;line-height:1.45}
+.atlas-app .money{font-family:var(--at-mono);font-size:12px;line-height:1.4;background:var(--at-money-soft);color:var(--at-money);padding:4px 8px;border-radius:5px;align-self:flex-start}
+.atlas-app .card .go{margin-top:auto;padding-top:4px;font-size:13px;font-weight:600;color:var(--sc);display:flex;gap:6px;align-items:center}
+.atlas-app .card .go::after{content:"→";transition:transform .25s var(--at-ease)}
+.atlas-app .card:hover .go::after{transform:translateX(4px)}
+.atlas-app .morebtn{margin-top:14px;background:transparent;border:1px dashed var(--at-line);border-radius:10px;padding:10px 16px;width:100%;cursor:pointer;color:var(--at-muted);font-weight:500;transition:border-color .2s,color .2s}
+.atlas-app .morebtn:hover{border-color:var(--sc);color:var(--at-ink)}
+.atlas-app .none{color:var(--at-muted);font-style:italic;margin:0;padding:4px 0 8px}
+
+/* ---------- drawer ---------- */
+.atlas-app .scrim{position:fixed;inset:0;background:#02080A;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
+.atlas-app .scrim.on{opacity:.45;pointer-events:auto}
+.atlas-app .drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--at-surface);z-index:10;transform:translateX(104%);transition:transform .42s var(--at-ease),visibility 0s .42s;display:flex;flex-direction:column;border-left:4px solid var(--sc);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);visibility:hidden}
+.atlas-app .drawer.on{transform:none;visibility:visible;transition:transform .42s var(--at-ease),visibility 0s}
+.atlas-app .drawer-top{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 0}
+.atlas-app .x{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:20px;border:1px solid var(--at-line)}
+.atlas-app .x:hover{background:var(--at-sunk)}
+.atlas-app .x:focus-visible{outline:2px solid var(--at-s1)}
+.atlas-app .drawer-body{overflow-y:auto;padding:12px 24px 28px;display:flex;flex-direction:column;gap:20px}
+.atlas-app .drawer h2{font-family:var(--at-display);font-weight:800;font-size:32px;line-height:1.02;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.atlas-app .drawer .sum{font-size:17px;margin:0}
+.atlas-app .drawer dl{margin:0;display:flex;flex-direction:column;gap:18px}
+.atlas-app .drawer dt{font-family:var(--at-display);font-weight:700;font-size:16px;color:var(--at-ink);margin-bottom:4px}
+.atlas-app .drawer dd{margin:0}
+.atlas-app .drawer.on .drawer-body>*{animation:rise .5s var(--at-ease) both;animation-delay:calc(var(--k,0)*55ms + 120ms)}
+.atlas-app .drawer dd p{margin:0 0 10px}
+.atlas-app .drawer dd p:last-child{margin-bottom:0}
+.atlas-app .svc{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.atlas-app .svc li{position:relative;padding-left:16px}
+.atlas-app .svc li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--sc)}
+.atlas-app .svc .lab{display:block;font-weight:600}
+.atlas-app .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.atlas-app .tag{font-size:12.5px;padding:2px 8px;border-radius:4px;background:var(--at-sunk);color:var(--at-muted)}
+.atlas-app .visit{display:inline-flex;gap:8px;align-items:center;background:var(--at-ink);color:var(--at-ground);text-decoration:none;padding:11px 18px;border-radius:999px;font-weight:600;align-self:flex-start}
+.atlas-app .atlas{border-left:3px solid var(--sc);padding:2px 0 2px 14px;margin:0;font-size:15px}
+.atlas-app .atlas b{display:block;font-family:var(--at-mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--at-muted);margin-bottom:2px}
+.atlas-app .jump{display:flex;flex-direction:column;gap:8px}
+.atlas-app .jump b{font-family:var(--at-mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--sc)}
+.atlas-app .jump div{display:flex;flex-wrap:wrap;gap:8px}
+.atlas-app .jump a{font-size:14px;text-decoration:none;border:1px solid var(--at-line);border-radius:999px;padding:6px 13px;transition:border-color .18s,transform .18s var(--at-ease)}
+.atlas-app .jump a:hover{border-color:var(--sc);transform:translateY(-1px)}
+.atlas-app .jump a::after{content:" \2197";color:var(--sc)}
+.atlas-app .srcline{font-family:var(--at-mono);font-size:12px;color:var(--at-muted);word-break:break-all;margin:0}
+.atlas-app .basis{font-size:13.5px;color:var(--at-muted)}
+.atlas-app .basis.warn{color:var(--at-warn)}
+
+/* ---------- lists + foot ---------- */
+.atlas-app .lists{margin-top:56px;border-top:1px solid var(--at-line);padding-top:32px}
+.atlas-app .lists h2{font-family:var(--at-display);font-size:28px;letter-spacing:-.02em;margin:0 0 4px}
+.atlas-app .lists .sub{color:var(--at-muted);margin:0 0 16px;max-width:66ch}
+.atlas-app .scroll{overflow-x:auto}
+.atlas-app table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:640px}
+.atlas-app th{text-align:left;font-family:var(--at-body);font-size:13px;color:var(--at-muted);font-weight:600;padding:8px 14px 8px 0;border-bottom:1px solid var(--at-line)}
+.atlas-app td{padding:10px 14px 10px 0;border-bottom:1px solid var(--at-line);vertical-align:top}
+.atlas-app .foot{margin-top:36px;color:var(--at-muted);font-size:13.5px;max-width:78ch}
+.atlas-app .foot p{margin:6px 0}
+
+/* ---------- motion ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{from{transform:scale(0)}60%{transform:scale(1.25)}to{transform:scale(1)}}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(var(--dx),var(--dy))}}
+@keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:no-preference){
+  .atlas-app h1 span{animation:rise .7s var(--at-ease) both;animation-delay:calc(var(--w)*90ms)}
+  .atlas-app .lede,.atlas-app .eyebrow{animation:rise .7s var(--at-ease) both;animation-delay:.35s}
+  .atlas-app .route-draw{stroke-dasharray:var(--len);animation:draw 2.2s var(--at-ease) both .2s}
+  .atlas-app .dot{animation:pop .55s var(--at-ease) both;animation-delay:calc(var(--d)*1ms)}
+  .atlas-app .dotg{animation:drift var(--t) ease-in-out infinite alternate;animation-delay:calc(var(--d)*-7ms)}
+  .atlas-app .terr-g{animation:rise .6s var(--at-ease) both;animation-delay:calc(var(--n)*180ms + 200ms)}
+  .atlas-app .leg{animation:rise .6s var(--at-ease) both;animation-delay:calc(var(--n)*90ms + 900ms)}
+  .atlas-app .card.in{animation:rise .45s var(--at-ease) both;animation-delay:calc(var(--i)*35ms)}
+}
+@media (prefers-reduced-motion:reduce){.atlas-app *{transition:none!important;animation:none!important}.atlas-app .route-draw{display:none}}
+
+@media (max-width:900px){
+  .atlas-app .mast{grid-template-columns:1fr;gap:14px}
+  .atlas-app .legend{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .atlas-app .groups{grid-template-columns:1fr}
+  .atlas-app .stage-head{grid-template-columns:auto minmax(0,1fr)}
+  .atlas-app .stage-ct{grid-column:2}
+}
+@media (max-width:520px){.atlas-app .legend{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- site integration overrides ---------- */
+.atlas-app{background:transparent;line-height:1.5;letter-spacing:-0.005em}
+.atlas-app .mono,.atlas-app .kind,.atlas-app .terr-num,.atlas-app .leg .ct,.atlas-app .chip .n,
+.atlas-app .fgroup h3 em,.atlas-app .atlas b,.atlas-app .jump b,.atlas-app .stage-ct,.atlas-app .money,
+.atlas-app .srcline,.atlas-app .tip small{font-weight:600}
+.atlas-app .panel-top h2,.atlas-app .stage h2,.atlas-app .fgroup h3,.atlas-app .card h3,.atlas-app .drawer h2,
+.atlas-app .lists h2,.atlas-app .leg .nm,.atlas-app .drawer dt{letter-spacing:-0.012em}
+.atlas-app .stage h2{font-weight:600}
+.atlas-app .drawer h2{font-weight:700;letter-spacing:-0.012em}
+.atlas-app .chip[aria-pressed="true"]{background:var(--at-accent);color:var(--at-accent-ink)}
+.atlas-app .chip[aria-pressed="true"] .n{color:var(--at-accent-ink);opacity:.8}
+.atlas-app .chip{background:var(--at-surface);border-color:var(--at-line)}
+.atlas-app .chip:hover{border-color:var(--at-accent)}
+.atlas-app .tok{background:var(--at-accent);color:var(--at-accent-ink)}
+.atlas-app .preset{border-color:var(--at-line);background:var(--at-surface)}
+.atlas-app .preset:hover{background:var(--at-accent);color:var(--at-accent-ink);border-color:var(--at-accent)}
+.atlas-app .visit{background:var(--at-accent);color:var(--at-accent-ink);border-radius:6px}
+.atlas-app .visit:hover{background:#7A1212}
+.atlas-app .clear:hover{color:var(--at-accent)}
+.atlas-app .panel,.atlas-app .card{border-radius:12px}
+.atlas-app .card{border-radius:10px}
+.atlas-app .strip{background:var(--at-ground)}
+.atlas-app td a{text-decoration:underline;text-underline-offset:3px}
+.atlas-app td a:hover{color:var(--at-accent)}
+.atlas-app :focus-visible{outline-color:var(--at-accent)}
+.atlas-app .x:focus-visible,.atlas-app .leg:focus-visible,.atlas-app .clear:focus-visible,.atlas-app .tok:focus-visible,.atlas-app .card:focus-visible{outline-color:var(--at-accent)}

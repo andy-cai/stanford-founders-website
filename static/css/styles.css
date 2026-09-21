@@ -243,6 +243,26 @@ nav.primary .links .cta:hover { background: var(--parchment); color: var(--cardi
   background: rgba(255,255,255,0.25);
   z-index: -1;
 }
+/* Hero quote variant: upright serif, one step below the display size,
+   with a small uppercase attribution line beneath it. */
+.hero-photo h1.quote {
+  font-size: 60px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.15;
+  max-width: 980px;
+  margin-bottom: 18px;
+}
+.hero-photo .cite {
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 32px;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+}
 .hero-photo p.lede {
   font-size: 22px;
   line-height: 1.55;
@@ -536,6 +556,8 @@ section.body.dark .section-header .eyebrow { color: rgba(255,255,255,0.6); }
 .principle { border-top: 3px solid var(--cardinal); padding-top: 28px; }
 .principle h3 { font-weight: 600; font-size: 22px; color: var(--ink); margin-bottom: 12px; line-height: 1.30; letter-spacing: -0.008em; }
 .principle p { font-size: 15px; color: var(--steel); line-height: 1.6; }
+.principle p a { color: var(--cardinal); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+.principle p a:hover { color: var(--cardinal-dark); }
 
 /* ── Final CTA on photo ── */
 .final-cta {
@@ -1163,6 +1185,7 @@ footer.site .legal {
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .hero-photo h1 { font-size: 60px; }
+  .hero-photo h1.quote { font-size: 48px; }
   .gallery .item.col-7 { grid-column: span 12; grid-row: span 1; }
   .gallery .item.col-5, .gallery .item.col-6, .gallery .item.col-4 { grid-column: span 6; }
 }
@@ -1170,6 +1193,7 @@ footer.site .legal {
   .hero-photo { min-height: 520px; }
   .hero-photo .wrap { min-height: 520px; padding-top: 64px; padding-bottom: 64px; }
   .hero-photo h1 { font-size: 44px; }
+  .hero-photo h1.quote { font-size: 36px; }
   .hero-photo p.lede { font-size: 18px; }
   .page-hero { min-height: 280px; }
   .page-hero .wrap { min-height: 280px; padding-top: 56px; padding-bottom: 56px; }
@@ -1198,6 +1222,7 @@ footer.site .legal {
 @media (max-width: 480px) {
   .wrap { padding: 0 20px; }
   .hero-photo h1 { font-size: 36px; }
+  .hero-photo h1.quote { font-size: 30px; }
   .page-hero h1 { font-size: 30px; }
   .stat .num { font-size: 42px; }
   .final-cta h2 { font-size: 28px; }
